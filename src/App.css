@@ -93,3 +93,21 @@ body {
   border-radius: 8px;
   display: block;
 }
+img {
+  max-width: 100%; 
+  height: auto;
+  display: block; /* Сурет астындағы артық бос орынды алдын алу үшін */
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; /* Телефонда шетіне жабысып қалмауы үшін */
+  box-sizing: border-box; /* Padding-ті еніне қосу үшін */
+}
+body, html {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

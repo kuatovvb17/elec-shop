@@ -226,10 +226,26 @@
   font-size: 24px;
   margin: 0 auto 15px;
 }
-
-/* Бейімделу (Responsive) */
+.navbar-container {
+  display: flex;
+  flex-wrap: wrap; /* Элементтер сыймаса, келесі жолға түседі */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
 @media (max-width: 768px) {
-  .gender-tabs, .cat-menu { display: none; }
-  .brand-logo { font-size: 24px; }
-  .lamoda-search-container { max-width: 150px; }
+  .search-bar {
+    order: 3; /* Іздеу жолағын логотип пен иконкалардың астына түсіру */
+    width: 100%; 
+    margin-top: 10px;
+  }
+  
+  .nav-icons {
+    gap: 10px; /* Иконкалар арасын азайту */
+  }
+
+  .logo {
+    font-size: 1.2rem; /* Логотипті сәл кішірейту */
+  }
 }
