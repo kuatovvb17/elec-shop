@@ -5,12 +5,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #fff;
-  color: #333;
-  -webkit-font-smoothing: antialiased;
-}
 
 /* 2. Navbar - менюді қатарға тізу */
 .navbar {
@@ -105,9 +99,35 @@ img {
   padding: 0 15px; /* Телефонда шетіне жабысып қалмауы үшін */
   box-sizing: border-box; /* Padding-ті еніне қосу үшін */
 }
-body, html {
-  overflow-x: hidden;
-  width: 100%;
+
+/* Бүкіл экранды реттеу */
+html, body {
+  overflow-x: hidden; /* Көлденең айналдыруды жою */
   margin: 0;
   padding: 0;
+}
+
+/* Топбарды бір сызыққа жинау */
+.topbar, .header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 20px !important;
+  flex-wrap: nowrap !important; /* Ешқашан екі жолға бөлінбесін */
+}
+
+/* Футерді жинақы қылу */
+footer, .footer-container {
+  display: flex !important;
+  flex-direction: column !important; /* Телефонда бірінің астына бірі */
+  align-items: center !important;
+  gap: 15px !important;
+  padding: 20px !important;
+}
+
+@media (min-width: 768px) {
+  footer, .footer-container {
+    flex-direction: row !important; /* Компьютерде қатарлап қою */
+    justify-content: space-around !important;
+  }
 }
