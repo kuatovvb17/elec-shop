@@ -1,0 +1,95 @@
+/* 1. Стандартты стильдерді тазалау */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #fff;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 2. Navbar - менюді қатарға тізу */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fff;
+}
+
+.logo-section img {
+  height: 35px; /* Логотипті аккуратный қылады */
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px; /* Меню арасындағы қашықтық */
+  list-style: none !important; /* Нүктелерді жою */
+}
+
+.nav-links li a {
+  text-decoration: none !important;
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: 300; /* Жұқа шрифт */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-links li a:hover {
+  color: #000;
+  font-weight: 500;
+}
+
+/* 3. Себет (Cart) бөлімі */
+.cart-section a {
+  text-decoration: none;
+  color: #8e8e93;
+  font-size: 0.9rem;
+}
+
+.cart-count {
+  background: #ff9500;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  margin-left: 5px;
+}
+
+
+/* Placeholder стилі */
+.no-image-placeholder {
+  width: 120px;
+  height: 160px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px dashed #ddd;
+}
+
+.no-image-placeholder span {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Суреттің өзіне арналған стиль (контейнер ішінде сыюы үшін) */
+.item-image img {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}

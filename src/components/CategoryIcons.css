@@ -1,0 +1,60 @@
+/* Жалпы тордың құрылымы */
+.category-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Бір қатарда 6 блок */
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+/* Әрбір категория блогы */
+.category-icon-item {
+  background-color: #F5F5F5; /* Ашық сұр фон */
+  height: 90px; /* Блоктың биіктігі */
+  display: flex;
+  justify-content: space-between; /* Мәтін сол жақта, сурет оң жақта */
+  align-items: center;
+  padding: 0 0 0 15px; /* Оң жақтан padding-ті алып тастаймыз, сурет шетіне тиіп тұруы үшін */
+  overflow: hidden; /* Сурет блоктан шығып кетпеуі үшін */
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.category-icon-item:hover {
+  background-color: #EDEDED;
+}
+
+/* Мәтін стилі */
+.cat-name {
+  font-size: 13px;
+  color: #000;
+  font-weight: 400;
+  line-height: 1.2;
+  max-width: 80px; /* Мәтін екі жолға әдемі түсуі үшін */
+  z-index: 1;
+}
+
+/* СУРЕТТІ ТҮЗЕТУ - Ең маңызды бөлігі */
+.category-icon-item img {
+  height: 100%; /* Блоктың биіктігін толық алады */
+  width: auto;  /* Пропорцияны сақтайды */
+  object-fit: contain; /* Суреттің бұзылмауын қадағалайды */
+  align-self: flex-end; /* Суретті төменге қарай итереді */
+  margin-right: -5px; /* Сәл оңға итеріп, Lamoda стиліне келтіру */
+}
+
+/* Мобильді телефондарға арналған (Адаптив) */
+@media (max-width: 1024px) {
+  .category-icons-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .category-icons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .category-icon-item {
+    height: 80px;
+  }
+}

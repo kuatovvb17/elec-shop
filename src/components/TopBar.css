@@ -1,0 +1,80 @@
+.top-bar {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 0;
+  font-size: 13px;
+  width: 100%;
+}
+
+.top-bar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Қала таңдау бөлімі */
+.city-dropdown-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.city-current {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.city-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #111;
+  border: 1px solid #333;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  width: 150px;
+  z-index: 9999;
+}
+
+.city-dropdown-wrapper:hover .city-list {
+  display: block;
+}
+
+.city-list li {
+  padding: 8px 15px;
+  transition: 0.3s;
+}
+
+.city-list li:hover {
+  background: #333;
+}
+
+/* Оң жақтағы сілтемелер */
+.top-bar-right {
+  display: flex;
+  gap: 25px;
+}
+
+.top-link {
+  text-decoration: none;
+  color: #fff !important; /* Түсі ақ болып қалуы үшін */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-link:hover {
+  opacity: 0.8;
+}
+
+.top-icon {
+  font-size: 16px;
+}

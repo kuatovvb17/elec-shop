@@ -1,0 +1,235 @@
+/* --- 1. НЕГІЗГІ ҚАҢҚА (GENERAL LAYOUT) --- */
+.navbar-lamoda {
+  width: 100%;
+  background: #fff;
+  font-family: 'Helvetica', Arial, sans-serif;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  width: 95%;
+}
+
+/* Ортаңғы бөлімнің орналасуы */
+.header-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+/* Табтар мен Оң жақ бөлікке тең орын беру (Логотип ортада қалуы үшін) */
+.gender-tabs, .user-nav {
+  flex: 1; 
+  display: flex;
+  align-items: center;
+}
+
+.user-nav { 
+  justify-content: flex-end; 
+}
+
+/* --- 2. ГЕНДЕРЛІК ТАБТАР --- */
+.gender-tabs { 
+  gap: 20px; 
+  font-size: 14px; 
+  color: #888; 
+}
+
+.gender-tabs span { 
+  cursor: pointer; 
+  transition: all 0.2s ease;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.gender-tabs span.active {
+  color: #000;
+  font-weight: 700;
+  border-bottom: 2px solid #000;
+}
+
+.gender-tabs span:hover:not(.active) {
+  color: #000;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* --- 3. ЛОГОТИП (BRANDING) --- */
+.brand-logo {
+  font-size: 32px;
+  font-weight: 900;
+  text-decoration: none;
+  letter-spacing: -1px;
+  text-align: center;
+  display: block;
+}
+.dark-j { color: #000000; } /* Немесе #004d00 */
+.light-da { color: #66cc00; }
+
+/* --- 4. НАВИГАЦИЯЛЫҚ ИКОНКАЛАР МЕН ПРОФИЛЬ --- */
+.nav-icons-group {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-item-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  gap: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.nav-item-icon span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nav-item-icon:hover {
+  opacity: 0.6;
+}
+
+.bag-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Сандар көрсеткіші (Badge) */
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: #000;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 14px;
+  text-align: center;
+}
+
+.favorite-badge {
+  background: #ff3b30; /* Таңдаулылар үшін қызыл түс */
+}
+
+/* --- 5. ТӨМЕНГІ БӨЛІМ (КАТЕГОРИЯЛАР МЕН ІЗДЕУ) --- */
+.bottom-header { 
+  padding: 10px 0; 
+  background: #fff; 
+}
+
+.search-layout { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.cat-menu {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cat-menu li {
+  font-size: 14px; 
+  font-weight: 500;
+  color: #000;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: color 0.2s ease;
+}
+
+.cat-menu li:hover {
+  color: #ff5c00; /* Lamoda стиліндегі қызғылт-сары */
+}
+
+/* Іздеу жолағы */
+.lamoda-search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+  height: 36px;
+  width: 100%;
+  max-width: 300px;
+  background: #fff;
+}
+
+.lamoda-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding-left: 12px;
+  font-size: 14px;
+}
+
+.lamoda-search-button {
+  width: 45px;
+  height: 100%;
+  background: #000;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* --- 6. МОДАЛЬКАЛАР МЕН АДМИН СТИЛЬДЕРІ --- */
+.admin-special {
+  color: #2c3e50;
+  border-right: 1px solid #eee;
+  padding-right: 15px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff3b3b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #e03030;
+}
+
+/* Профиль модалкасындағы аватар */
+.avatar-circle {
+  width: 60px;
+  height: 60px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin: 0 auto 15px;
+}
+
+/* Бейімделу (Responsive) */
+@media (max-width: 768px) {
+  .gender-tabs, .cat-menu { display: none; }
+  .brand-logo { font-size: 24px; }
+  .lamoda-search-container { max-width: 150px; }
+}

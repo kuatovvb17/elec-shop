@@ -1,0 +1,251 @@
+.cart-page {
+  padding: 120px 20px 60px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.cart-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cart-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.cart-header span {
+  color: #888;
+  font-weight: 400;
+}
+
+.cart-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.item-image img {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* СУРЕТ ЖОҚ КЕЗДЕГІ СТИЛЬ */
+.no-image-placeholder {
+  width: 120px;
+  height: 160px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px dashed #ddd;
+}
+
+.no-image-placeholder span {
+  font-size: 10px;
+  color: #888;
+  text-align: center;
+}
+
+.item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-info-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-info-top h3 {
+  font-size: 18px;
+  margin: 0 0 5px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.remove-btn:hover { color: #ff3b30; }
+
+.item-actions-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.quantity-controls button {
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.item-price {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.summary-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 100px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.text-red { color: #ff3b30; }
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.promo-section {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.promo-section input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.promo-section button {
+  background: none;
+  border: 1px solid #000;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid #eee;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+  .cart-content { grid-template-columns: 1fr; }
+}
+.item-image {
+  width: 120px;
+  height: 160px;
+  flex-shrink: 0; /* Сурет қысылып қалмауы үшін */
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Бос себет контейнері */
+.cart-empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Көлденеңінен ортаға қою */
+  justify-content: center; /* Тігінен ортаға қою */
+  min-height: 60vh; /* Экранның 60% биіктігін алу */
+  text-align: center;
+  padding: 20px;
+}
+
+/* "Себетіңіз бос" деген тақырып */
+.cart-empty-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+/* Сипаттама мәтіні */
+.cart-empty-container p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* "Тауарларға көшу" батырмасы */
+.go-shopping-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.go-shopping-btn:hover {
+  background-color: #333;
+}

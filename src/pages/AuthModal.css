@@ -1,0 +1,128 @@
+/* Модалканың сырты (көлеңке) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Сәл қоюлау қылдық */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px); /* Артқы жақты сәл бұлдырату (эстетика) */
+}
+
+/* Модалканың ортасы */
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 16px; /* Бұрыштарын сәл жұмсарттық */
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-out; /* Ашылғанда эффект */
+}
+
+@keyframes fadeIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Жабу батырмасы (X) */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  color: #ff0000;
+}
+
+h2 {
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Инпуттар тобы */
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #000; /* Басқанда қара түспен қоршалады */
+}
+
+/* Қателік мәтіні */
+.error {
+  color: #ff3b3b;
+  font-size: 11px;
+  margin-top: 4px;
+  display: block;
+  font-weight: 500;
+}
+
+/* Негізгі Войти/Регистрация батырмасы */
+.login-submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.login-submit-btn:hover {
+  background-color: #333;
+}
+
+/* Астындағы ауыстырып қосу бөлімі */
+.auth-footer {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* "Регистрация/Войти" деген көк сілтеме-батырма */
+.toggle-auth-btn {
+  background: none;
+  border: none;
+  color: #0056b3;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 5px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.toggle-auth-btn:hover {
+  color: #003d7a;
+  text-decoration: underline;
+}

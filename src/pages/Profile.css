@@ -1,0 +1,49 @@
+.profile-page {
+  padding: 50px 0;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.avatar-big {
+  width: 100px;
+  height: 100px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.user-details p {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.order-history {
+  margin-top: 40px;
+}
+
+.empty-text {
+  color: #888;
+  font-style: italic;
+}
+
+.logout-simple-btn {
+  background: none;
+  border: none;
+  color: #ff3b3b;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+}

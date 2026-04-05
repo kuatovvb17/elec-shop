@@ -1,0 +1,100 @@
+.payment-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.payment-hero-banner {
+  position: relative;
+  width: 100%;
+  height: 450px; /* Высота баннера */
+  margin-bottom: 50px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f0f0f0; /* Цвет фона, пока грузится фото */
+}
+
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-img-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Важно: заполняет всё пространство без искажений */
+  display: block;
+}
+
+.hero-text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Затемнение, чтобы текст читался */
+  display: flex;
+  align-items: center;
+  padding-left: 80px;
+}
+
+.hero-text-overlay h1 {
+  color: white;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 800;
+  text-transform: lowercase;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+}
+
+.payment-info-flex-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  text-align: center;
+}
+
+.payment-info-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  background-color: #e3efff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.payment-info-item h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.payment-info-item p {
+  color: #666;
+  font-size: 14px;
+  max-width: 250px;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .payment-info-flex-grid {
+    flex-direction: column;
+  }
+  .hero-text-overlay {
+    padding-left: 20px;
+  }
+  .hero-text-overlay h1 {
+    font-size: 40px;
+  }
+}

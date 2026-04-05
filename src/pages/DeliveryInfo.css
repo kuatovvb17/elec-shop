@@ -1,0 +1,86 @@
+.delivery-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.delivery-hero-banner {
+  position: relative;
+  height: 450px;
+  border-radius: 20px; /* Суреттегідей жұмсақ бұрыштар */
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.hero-img-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+}
+
+.hero-text-overlay h1 {
+  color: white;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.delivery-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+.delivery-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: 300px; /* Суреттердің биіктігі бірдей болуы маңызды */
+  object-fit: cover;
+}
+
+.delivery-card h3 {
+  margin: 25px 0 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #222;
+}
+
+.delivery-card p {
+  padding: 0 25px 30px;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Мобильді нұсқа */
+@media (max-width: 768px) {
+  .delivery-grid {
+    flex-direction: column;
+  }
+  .hero-text-overlay h1 {
+    font-size: 40px;
+  }
+}
