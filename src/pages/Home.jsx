@@ -7,11 +7,11 @@ import ProductDetail from '../components/ProductDetail';
 import MenDepartmentBanner from '../components/MenDepartmentBanner'; 
 import './Home.css';
 
-const Home = ({ addToCart, toggleFavorite, favorites, activeTab, activeCategory, setActiveCategory }) => {
+// 1. Аргументтерге searchQuery қостық
+const Home = ({ addToCart, toggleFavorite, favorites, activeTab, activeCategory, setActiveCategory, searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // 1. Деректерді серверден жүктеу
   useEffect(() => {
     fetch('http://localhost:5000/api/products')
       .then((res) => res.json())
@@ -19,14 +19,20 @@ const Home = ({ addToCart, toggleFavorite, favorites, activeTab, activeCategory,
       .catch(err => console.error("Тауарларды жүктеу қатесі:", err));
   }, []);
 
-  // 2. Фильтрация логикасы (Гендер + Категория)
+  // 2. ФИЛЬТРАЦИЯ ЛОГИКАСЫ (Гендер + Категория + Іздеу)
   const filteredProducts = products.filter((product) => {
     const matchGender = product.gender === activeTab;
     const matchCategory = activeCategory === 'all' || product.category === activeCategory;
-    return matchGender && matchCategory;
+    
+    // Іздеу сөзіне сәйкестігін тексеру (Аты немесе Категориясы бойынша)
+    const searchTerm = searchQuery ? searchQuery.toLowerCase() : "";
+    const matchSearch = 
+      product.name.toLowerCase().includes(searchTerm) || 
+      (product.description && product.description.toLowerCase().includes(searchTerm));
+
+    return matchGender && matchCategory && matchSearch;
   });
 
-  // 3. Тауарды басқанда толық мәліметті ашу
   const handleProductClick = (product) => {
     setSelectedProduct(product);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -35,34 +41,39 @@ const Home = ({ addToCart, toggleFavorite, favorites, activeTab, activeCategory,
   return (
     <main className="home-page-wrapper">
       
-      {/* ЕГЕР ТАУАР ТАҢДАЛСА, ТОЛЫҚ БЕТТІ КӨРСЕТУ */}
       {selectedProduct ? (
         <ProductDetail 
           product={selectedProduct} 
           onClose={() => setSelectedProduct(null)} 
           addToCart={addToCart}
-          toggleFavorite={toggleFavorite} // Таңдаулыларға қосу мүмкіндігі
-          favorites={favorites}           // Күйін тексеру үшін
+          toggleFavorite={toggleFavorite}
+          favorites={favorites}
         />
       ) : (
         <>
-          {/* --- ӘЙЕЛДЕР БАННЕРЛЕРІ --- */}
-          {activeTab === 'women' && (
+          {/* Іздеу кезінде баннерлерді жасыру (ыңғайлы болу үшін) */}
+          {!searchQuery && (
             <>
-              <PromoBanner />
-              <CategoryIcons setActiveCategory={setActiveCategory} />
-              <OfficeBanner />
-            </>
-          )}
+              {activeTab === 'women' && (
+                <>
+                  <PromoBanner />
+                  <CategoryIcons setActiveCategory={setActiveCategory} />
+                  <OfficeBanner />
+                </>
+              )}
 
-          {/* --- ЕРЛЕР БАННЕРІ --- */}
-          {activeTab === 'men' && (
-            <MenDepartmentBanner />
+              {activeTab === 'men' && (
+                <MenDepartmentBanner />
+              )}
+            </>
           )}
 
           <div className="container product-section" style={{ background: '#ffffff', position: 'relative', zIndex: '10' }}>
             <h2 className="section-title">
-              {activeTab === 'women' ? 'Әйелдерге арналған өнімдер' : activeTab === 'men' ? 'Ерлерге арналған өнімдер' : 'Балаларға арналған өнімдер'}
+              {searchQuery 
+                ? `"${searchQuery}" бойынша іздеу нәтижелері` 
+                : (activeTab === 'women' ? 'Әйелдерге арналған өнімдер' : activeTab === 'men' ? 'Ерлерге арналған өнімдер' : 'Балаларға арналған өнімдер')
+              }
             </h2>
      
             <div className="products-grid">
@@ -72,14 +83,14 @@ const Home = ({ addToCart, toggleFavorite, favorites, activeTab, activeCategory,
                     key={product.id} 
                     product={product} 
                     onProductClick={handleProductClick} 
-                    toggleFavorite={toggleFavorite} // ЖАҢА: Таңдаулылар функциясы
-                    favorites={favorites}           // ЖАҢА: Таңдаулылар тізімі
+                    toggleFavorite={toggleFavorite}
+                    favorites={favorites}
                   />
                 ))
               ) : (
                 <div className="no-products">
-                  <h3>Кешіріңіз, бұл категорияда тауар табылмады.</h3>
-                  <p>Басқа бөлімдерді қарап көріңіз.</p>
+                  <h3>Кешіріңіз, ештеңе табылмады.</h3>
+                  <p>Басқа сөздермен іздеп немесе категорияны өзгертіп көріңіз.</p>
                 </div>
               )}
             </div>

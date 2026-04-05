@@ -17,22 +17,22 @@ import Orders from './pages/Orders';
 import Settings from './pages/Settings';
 import Admin from './pages/Admin';
 import Checkout from './pages/Checkout';
+import CategoryPage from './pages/CategoryPage';
 
 import './App.css';
 
-// --- ҚОРҒАЛҒАН МАРШРУТ КОМПОНЕНТІ ---
 const ProtectedRoute = ({ children }) => {
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
   return isAdmin ? children : <Navigate to="/" />; 
 };
 
 function App() {
-  // --- 1. СЕБЕТ (CART) КҮЙІ ---
   const [cartItems, setCartItems] = useState([]);
-  // Себеттегі жалпы соманы сақтайтын күй
   const [totalPrice, setTotalPrice] = useState(0);
+  
+  // --- ІЗДЕУ (SEARCH) ҮШІН ЖАҢА КҮЙ ---
+  const [searchQuery, setSearchQuery] = useState(""); 
 
-  // --- 2. ТАҢДАУЛЫЛАР (FAVORITES) КҮЙІ ---
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem('favorites');
     return saved ? JSON.parse(saved) : [];
@@ -45,7 +45,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('women');
   const [activeCategory, setActiveCategory] = useState('all');
 
-  // --- 3. ФУНКЦИЯЛАР ---
+  // --- ФУНКЦИЯЛАР ---
   const addToCart = (product) => {
     setCartItems((prevItems) => {
       const exist = prevItems.find((x) => x.id === product.id);
@@ -89,6 +89,8 @@ function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setActiveCategory={setActiveCategory}
+        // --- ОСЫ ЖЕРДЕ setSearchQuery ФУНКЦИЯСЫН БЕРЕМІЗ ---
+        setSearchQuery={setSearchQuery} 
       />
 
       <Routes>
@@ -100,10 +102,11 @@ function App() {
             activeTab={activeTab} 
             activeCategory={activeCategory} 
             setActiveCategory={setActiveCategory}
+            // --- HOME БЕТІНЕ searchQuery-ді ЖІБЕРЕМІЗ ---
+            searchQuery={searchQuery} 
           />
         } />
 
-        {/* Себет бетіне соманы орнату функциясын (setTotalPrice) жібереміз */}
         <Route path="/cart" element={
           <Cart 
             cartItems={cartItems} 
@@ -121,10 +124,8 @@ function App() {
           />
         } />
 
-        {/* Төлем бетіне нақты есептелген жалпы соманы жібереміз */}
         <Route path="/checkout" element={<Checkout cartTotal={totalPrice} />} />
 
-        {/* --- ҚОРҒАЛҒАН АДМИН МАРШРУТЫ --- */}
         <Route 
           path="/admin" 
           element={
@@ -133,7 +134,8 @@ function App() {
             </ProtectedRoute>
           } 
         />
-
+        <Route path="/category" element={<CategoryPage />} />
+        <Route path="/my-orders" element={<Orders />} />
         <Route path="/delivery-info" element={<DeliveryInfo />} />
         <Route path="/payment-info" element={<PaymentInfo />} />
         <Route path="/profile" element={<Profile />} />

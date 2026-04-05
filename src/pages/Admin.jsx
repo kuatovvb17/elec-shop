@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { PlusCircle, Trash2, Edit, Save, X, RefreshCw } from 'lucide-react';
+import { PlusCircle, Trash2, Edit, Save, X, RefreshCw, Package, ClipboardList } from 'lucide-react';
 import './Admin.css';
 
 const Admin = () => {
+  // --- STATE ---
   const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]); // Тапсырыстар үшін
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
   
@@ -16,22 +18,23 @@ const Admin = () => {
     description: '' 
   });
 
-  // 1. Тауарларды алу
+  // --- ЭФФЕКТТЕР ---
   useEffect(() => {
     fetchProducts();
+    fetchOrders(); // Компонент жүктелгенде тапсырыстарды да алу
   }, []);
 
+  // --- ТАУАРЛАР ФУНКЦИЯЛАРЫ ---
   const fetchProducts = async () => {
     try {
       const res = await fetch('http://localhost:5000/api/products');
       const data = await res.json();
       setProducts(data);
     } catch (err) {
-      console.error("Қате:", err);
+      console.error("Тауарларды алу қатесі:", err);
     }
   };
 
-  // 2. Өңдеу режиміне көшу
   const startEdit = (product) => {
     setIsEditing(true);
     setEditId(product.id);
@@ -43,24 +46,18 @@ const Admin = () => {
       gender: product.gender,
       description: product.description || ''
     });
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Формаға автоматты түрде көтерілу
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // 3. Өңдеуді тоқтату
   const cancelEdit = () => {
     setIsEditing(false);
     setEditId(null);
     setFormData({ name: '', price: '', image_url: '', category: 'Киім', gender: 'women', description: '' });
   };
 
-  // 4. Сақтау (Қосу немесе Жаңарту)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const url = isEditing 
-      ? `http://localhost:5000/api/products/${editId}` 
-      : 'http://localhost:5000/api/products';
-    
+    const url = isEditing ? `http://localhost:5000/api/products/${editId}` : 'http://localhost:5000/api/products';
     const method = isEditing ? 'PUT' : 'POST';
 
     try {
@@ -69,18 +66,16 @@ const Admin = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      
       if (response.ok) {
         alert(isEditing ? "Тауар жаңартылды!" : "Тауар қосылды!");
         cancelEdit();
-        fetchProducts(); // Тізімді қайта жүктеу
+        fetchProducts();
       }
     } catch (err) {
-      console.error("Қате:", err);
+      console.error("Сақтау қатесі:", err);
     }
   };
 
-  // 5. Өшіру
   const handleDelete = async (id) => {
     if (window.confirm("Бұл тауарды өшіруге сенімдісіз бе?")) {
       try {
@@ -92,14 +87,43 @@ const Admin = () => {
     }
   };
 
+  // --- ТАПСЫРЫСТАР ФУНКЦИЯЛАРЫ ---
+  const fetchOrders = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/api/orders');
+      const data = await res.json();
+      setOrders(data);
+    } catch (err) {
+      console.error("Тапсырыстарды алу қатесі:", err);
+    }
+  };
+
+  const updateStatus = async (id, newStatus) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/orders/${id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      });
+      if (res.ok) {
+        alert("Статус өзгертілді!");
+        fetchOrders(); // Тізімді жаңарту
+      }
+    } catch (err) {
+      console.error("Статусты жаңарту қатесі:", err);
+    }
+  };
+
   return (
     <div className="admin-container">
       <div className="admin-header">
-        <h1>Админ Панель</h1>
-        <button onClick={fetchProducts} className="refresh-btn"><RefreshCw size={20} /></button>
+        <h1><Package size={28} /> Админ Панель</h1>
+        <button onClick={() => { fetchProducts(); fetchOrders(); }} className="refresh-btn">
+          <RefreshCw size={20} /> Жаңарту
+        </button>
       </div>
 
-      {/* Форма: Қосу немесе Өңдеу */}
+      {/* 1-бөлім: Тауарды қосу/өңдеу */}
       <section className="admin-card">
         <h2>{isEditing ? 'Тауарды өңдеу' : 'Жаңа тауар қосу'}</h2>
         <form onSubmit={handleSubmit} className="admin-form">
@@ -119,7 +143,6 @@ const Admin = () => {
               required 
             />
           </div>
-          
           <input 
             type="text" 
             placeholder="Сурет сілтемесі (URL)" 
@@ -127,7 +150,6 @@ const Admin = () => {
             onChange={e => setFormData({...formData, image_url: e.target.value})} 
             required 
           />
-
           <div className="form-group">
             <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
               <option value="Киім">Киім</option>
@@ -141,7 +163,6 @@ const Admin = () => {
               <option value="kids">Балалар</option>
             </select>
           </div>
-
           <div className="form-actions">
             <button type="submit" className={isEditing ? "save-btn" : "add-btn"}>
               {isEditing ? <><Save size={20} /> Сақтау</> : <><PlusCircle size={20} /> Қосу</>}
@@ -155,7 +176,49 @@ const Admin = () => {
         </form>
       </section>
 
-      {/* Тізім */}
+      {/* 2-бөлім: Тапсырыстарды басқару */}
+      <section className="admin-card orders-section">
+        <h2><ClipboardList size={22} /> Тапсырыстарды басқару</h2>
+        <div className="table-responsive">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Клиент</th>
+                <th>Статус</th>
+                <th>Өзгерту</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map(order => (
+                <tr key={order.id}>
+                  <td>#{order.id}</td>
+                  <td>{order.user_name}</td>
+                  <td>
+                    <span className={`badge ${order.status}`}>
+                      {order.status === 'paid' ? 'Төленді' : 
+                       order.status === 'shipping' ? 'Жолда' : 'Жеткізілді'}
+                    </span>
+                  </td>
+                  <td>
+                    <select 
+                      className="status-select"
+                      onChange={(e) => updateStatus(order.id, e.target.value)} 
+                      value={order.status}
+                    >
+                      <option value="paid">Төленді</option>
+                      <option value="shipping">Жолда</option>
+                      <option value="delivered">Жеткізілді</option>
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* 3-бөлім: Тауарлар тізімі */}
       <section className="products-list">
         <h2>Барлық тауарлар ({products.length})</h2>
         <div className="table-responsive">
@@ -172,17 +235,13 @@ const Admin = () => {
             <tbody>
               {products.map(product => (
                 <tr key={product.id} className={editId === product.id ? "editing-row" : ""}>
-                  <td><img src={product.image_url} alt="" width="50" /></td>
+                  <td><img src={product.image_url} alt="" width="50" style={{borderRadius: '4px'}} /></td>
                   <td>{product.name}</td>
                   <td>{Number(product.price).toLocaleString()} ₸</td>
                   <td>{product.category}</td>
                   <td className="actions">
-                    <button className="edit-btn" onClick={() => startEdit(product)}>
-                      <Edit size={18} />
-                    </button>
-                    <button className="delete-btn" onClick={() => handleDelete(product.id)}>
-                      <Trash2 size={18} />
-                    </button>
+                    <button className="edit-btn" onClick={() => startEdit(product)}><Edit size={18} /></button>
+                    <button className="delete-btn" onClick={() => handleDelete(product.id)}><Trash2 size={18} /></button>
                   </td>
                 </tr>
               ))}

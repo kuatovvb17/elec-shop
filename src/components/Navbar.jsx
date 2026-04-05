@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, ShoppingBag, Search, Heart, Settings, LogOut } from 'lucide-react'; 
-import AuthModal from '../pages/AuthModal'; // Өз жолыңызды тексеріңіз
-import ProfileModal from '../pages/ProfileModal'; // Өз жолыңызды тексеріңіз
+import { User, ShoppingBag, Search, Heart, Settings } from 'lucide-react'; 
+import AuthModal from '../pages/AuthModal'; 
+import ProfileModal from '../pages/ProfileModal'; 
 import './Navbar.css';
 
-const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setActiveCategory }) => {
+const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setActiveCategory, setSearchQuery }) => {
   const navigate = useNavigate();
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -18,7 +18,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
     kids: ["Балалар киімі", "Балалар аяқ киімі", "Ойыншықтар", "Сәбилерге", "Балалар гигиенасы", "Мектеп", "Спорт"]
   };
 
-  // 1. Авторизацияны және Админ статусын тексеру
   useEffect(() => {
     const checkAuth = () => {
       const savedUser = localStorage.getItem('user');
@@ -34,7 +33,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
     };
 
     checkAuth();
-    // Басқа терезелердегі өзгерістерді тыңдау
     window.addEventListener('storage', checkAuth);
     return () => window.removeEventListener('storage', checkAuth);
   }, []);
@@ -44,7 +42,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
     setActiveCategory('all');
   };
 
-  // 2. Жүйеден шығу функциясы
   const handleLogout = () => {
     if (window.confirm("Жүйеден шығуды растайсыз ба?")) {
       localStorage.removeItem('token');
@@ -84,7 +81,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
           <div className="user-nav">
             <div className="nav-icons-group">
               
-              {/* Админ Панель (Тек админ болса көрінеді) */}
               {isAdmin && (
                 <Link to="/admin" className="nav-item-icon admin-special">
                   <Settings size={26} strokeWidth={1.5} color="#000" />
@@ -92,7 +88,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
                 </Link>
               )}
 
-              {/* Таңдаулылар */}
               <Link to="/favorites" className="nav-item-icon" style={{ textDecoration: 'none' }}>
                 <div className="bag-icon-wrapper">
                   <Heart size={26} strokeWidth={1.5} />
@@ -103,7 +98,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
                 <span>Таңдаулылар</span>
               </Link>
 
-              {/* Профиль / Кіру */}
               {user ? (
                 <div className="nav-item-icon" onClick={() => setIsProfileOpen(true)}>
                   <User size={26} strokeWidth={1.5} />
@@ -116,7 +110,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
                 </div>
               )}
               
-              {/* Себет */}
               <Link to="/cart" className="nav-item-icon" style={{ textDecoration: 'none' }}>
                 <div className="bag-icon-wrapper">
                   <ShoppingBag size={26} strokeWidth={1.5} />
@@ -142,7 +135,12 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
           </ul>
           
           <div className="lamoda-search-container">
-            <input type="text" className="lamoda-search-input" placeholder="Поиск" />
+            <input 
+              type="text" 
+              className="lamoda-search-input" 
+              placeholder="Іздеу..." 
+              onChange={(e) => setSearchQuery(e.target.value)} // Live Search логикасы
+            />
             <button className="lamoda-search-button">
               <Search size={20} color="white" />
             </button>
@@ -150,7 +148,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
         </div>
       </div>
 
-      {/* Модаль терезелер */}
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
       
       {user && (
@@ -159,7 +156,7 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
           onClose={() => setIsProfileOpen(false)} 
           user={user} 
           onLogout={handleLogout} 
-          isAdmin={isAdmin} // Профиль ішінде де админ батырмасын көрсету үшін
+          isAdmin={isAdmin}
         />
       )}
     </nav>

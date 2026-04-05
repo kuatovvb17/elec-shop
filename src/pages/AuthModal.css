@@ -13,17 +13,18 @@
   backdrop-filter: blur(4px); /* Артқы жақты сәл бұлдырату (эстетика) */
 }
 
-/* Модалканың ортасы */
 .modal-content {
   background: white;
   padding: 40px;
-  border-radius: 16px; /* Бұрыштарын сәл жұмсарттық */
-  width: 90%;
+  border-radius: 16px;
+  width: 95%; /* Сәл кеңірек қылдық */
   max-width: 400px;
   position: relative;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  animation: fadeIn 0.3s ease-out; /* Ашылғанда эффект */
+  
+  /* ОСЫ 3 ЖОЛДЫ ҚОСЫҢЫЗ */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Ішіндегілерді шетіне дейін созады */
 }
 
 @keyframes fadeIn {
@@ -58,11 +59,12 @@ h2 {
 .input-group {
   margin-bottom: 15px;
   text-align: left;
-}
-
-.input-group input {
+  width: 100%; /* ОСЫ ЖОЛДЫ ҚОС */
+}.input-group input {
+  display: block; /* ОСЫ ЖОЛДЫ ҚОС */
   width: 100%;
   padding: 14px;
+  /* ... қалған кодтар сол күйі қалады ... */
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-sizing: border-box;

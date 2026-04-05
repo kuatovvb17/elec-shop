@@ -5,7 +5,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
@@ -18,6 +22,26 @@ const pool = new Pool({
 });
 
 const JWT_SECRET = 'your_super_secret_key_2026';
+
+// --- AUTHENTICATION (Тіркелу және Кіру) ---
+
+app.post('/api/register', async (req, res) => {
+  const { name, email, phone, password } = req.body;
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const result = await pool.query(
+      'INSERT INTO users (name, email, phone, password_hash) VALUES ($1, $2, $3, $4) RETURNING id, name, email',
+      [name, email, phone, hashedPassword]
+    );
+
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Тіркелу мүмкін болмады." });
+  }
+});
 
 app.post('/api/login', async (req, res) => {
   const { identifier, password } = req.body;
@@ -54,29 +78,12 @@ app.post('/api/login', async (req, res) => {
         role: user.role 
       }
     });
-
   } catch (err) {
     res.status(500).json({ error: "Серверде қате болды" });
   }
 });
 
-app.post('/api/register', async (req, res) => {
-  const { name, email, phone, password } = req.body;
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    const result = await pool.query(
-      'INSERT INTO users (name, email, phone, password_hash) VALUES ($1, $2, $3, $4) RETURNING id, name, email',
-      [name, email, phone, hashedPassword]
-    );
-
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Тіркелу мүмкін болмады." });
-  }
-});
+// --- PRODUCTS (Тауарларды басқару) ---
 
 app.get('/api/products', async (req, res) => {
   try {
@@ -124,16 +131,18 @@ app.delete('/api/products/:id', async (req, res) => {
     res.status(500).json({ error: "Өшіру кезінде қате шықты" });
   }
 });
+
+// --- ORDERS (Тапсырыстар мен Статустар) ---
+
+// 1. Жаңа тапсырыс қабылдау (Checkout)
 app.post('/api/orders', async (req, res) => {
     try {
         const { name, email, phone, method, address, date, time, total, cardNumber } = req.body;
-        
         const newOrder = await pool.query(
-            `INSERT INTO orders (user_name, user_email, user_phone, delivery_method, address, delivery_date, delivery_time, total_amount, card_number) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-            [name, email, phone, method, address, date, time, total, cardNumber]
+            `INSERT INTO orders (user_name, user_email, user_phone, delivery_method, address, delivery_date, delivery_time, total_amount, card_number, status) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
+            [name, email, phone, method, address, date, time, total, cardNumber, 'paid']
         );
-
         res.status(201).json({ message: "Тапсырыс сәтті қабылданды!", order: newOrder.rows[0] });
     } catch (err) {
         console.error(err.message);
@@ -141,5 +150,42 @@ app.post('/api/orders', async (req, res) => {
     }
 });
 
+app.get('/api/orders', async (req, res) => {
+  try {
+    console.log("Сұраныс түсті: /api/orders"); // Консольден тексеру үшін
+    const result = await pool.query('SELECT * FROM orders ORDER BY created_at DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Бэкэнд қатесі:", err.message);
+    res.status(500).json({ error: "Тапсырыстарды алу мүмкін болмады" });
+  }
+});
+
+// 3. Тапсырыс статусын жаңарту (Админ үшін)
+app.patch('/api/orders/:id/status', async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  try {
+    await pool.query('UPDATE orders SET status = $1 WHERE id = $2', [status, id]);
+    res.json({ message: "Статус жаңартылды" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Статусты өзгерту мүмкін болмады" });
+  }
+});
+
+app.get('/api/my-orders/:identifier', async (req, res) => {
+  const { identifier } = req.params;
+  try {
+    const result = await pool.query(
+      'SELECT * FROM orders WHERE user_email = $1 OR user_phone = $1 ORDER BY created_at DESC',
+      [identifier]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: "Жеке тапсырыстарды алу қатесі" });
+  }
+});
+
 const PORT = 5000;
-app.listen(PORT, () => console.log(`Сервер: http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Сервер қосылды: http://localhost:${PORT}`));

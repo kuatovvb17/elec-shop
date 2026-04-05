@@ -1,8 +1,28 @@
+/* Түнгі режим үшін айнымалылар */
+:root {
+  --bg-color: #fdfdfd;
+  --card-bg: #ffffff;
+  --text-main: #1a1a1a;
+  --text-sub: #666;
+  --border-color: #f5f5f5;
+  --input-bg: #fafafa;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-main: #f5f5f5;
+  --text-sub: #aaa;
+  --border-color: #333;
+  --input-bg: #2a2a2a;
+}
+
 .settings-page {
   min-height: 100vh;
-  background: #fdfdfd;
+  background: var(--bg-color);
   padding: 120px 20px 60px;
   font-family: 'Inter', sans-serif;
+  transition: 0.3s;
 }
 
 .settings-container {
@@ -10,21 +30,15 @@
   margin: 0 auto;
 }
 
-.settings-header {
-  margin-bottom: 40px;
-  text-align: left;
-}
-
 .settings-header h1 {
   font-size: 32px;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--text-main);
   margin-bottom: 8px;
 }
 
 .settings-header p {
-  color: #666;
-  font-size: 16px;
+  color: var(--text-sub);
 }
 
 .settings-grid {
@@ -33,26 +47,20 @@
   gap: 40px;
 }
 
-/* Sidebar Profile Card */
+/* Sidebar */
 .profile-card-static {
-  background: #fff;
+  background: var(--card-bg);
   padding: 30px;
   border-radius: 24px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0,0,0,0.03);
   margin-bottom: 20px;
-}
-
-.avatar-wrapper {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 15px;
+  color: var(--text-main);
 }
 
 .main-avatar {
-  width: 100%;
-  height: 100%;
+  width: 90px;
+  height: 90px;
   background: #000;
   color: #fff;
   font-size: 32px;
@@ -61,31 +69,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.edit-avatar-btn {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: #fff;
-  border: 1px solid #eee;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.settings-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin: 0 auto 15px;
 }
 
 .nav-item {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -95,8 +83,7 @@
   border-radius: 12px;
   cursor: pointer;
   font-size: 15px;
-  font-weight: 500;
-  color: #666;
+  color: var(--text-sub);
   transition: 0.3s;
 }
 
@@ -105,22 +92,42 @@
   color: #fff;
 }
 
-.nav-item:hover:not(.active) {
-  background: #f0f0f0;
+.dark-mode .nav-item.active {
+  background: #fff;
+  color: #000;
 }
 
 /* Content Area */
 .settings-content {
-  background: #fff;
+  background: var(--card-bg);
   padding: 40px;
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  color: var(--text-main);
 }
 
-.settings-section h2 {
-  font-size: 20px;
-  margin-bottom: 25px;
-  font-weight: 700;
+/* Input Fields */
+.setting-control-input {
+  margin-bottom: 20px;
+}
+
+.setting-control-input label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.setting-control-input input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-main);
+  outline: none;
 }
 
 .setting-control {
@@ -128,28 +135,22 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 0;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.control-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--text-sub);
 }
 
-.control-info span {
-  display: block;
-  font-weight: 600;
-  font-size: 16px;
+.empty-state p {
+  margin-top: 15px;
+  font-size: 18px;
 }
 
-.control-info p {
-  font-size: 13px;
-  color: #888;
-  margin-top: 2px;
-}
-
-/* UI Elements: Switch */
+/* Switch & Buttons */
 .switch {
   position: relative;
   display: inline-block;
@@ -163,7 +164,7 @@
   position: absolute;
   cursor: pointer;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #e0e0e0;
+  background-color: #ccc;
   transition: .4s;
   border-radius: 34px;
 }
@@ -178,35 +179,32 @@
   border-radius: 50%;
 }
 
-input:checked + .slider { background-color: #000; }
+input:checked + .slider { background-color: #2ecc71; }
 input:checked + .slider:before { transform: translateX(20px); }
-
-/* Buttons */
-.settings-actions {
-  margin-top: 40px;
-  display: flex;
-  gap: 15px;
-}
 
 .save-btn {
   background: #000;
   color: #fff;
-  padding: 14px 28px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 12px;
-  font-weight: 600;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.save-btn:hover { background: #333; }
+.dark-mode .save-btn {
+  background: #fff;
+  color: #000;
+}
 
 .delete-btn {
   background: none;
   border: none;
   color: #ff3b30;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
