@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 import './AuthModal.css';
 
 const AuthModal = ({ isOpen, onClose }) => {
@@ -49,7 +50,7 @@ const AuthModal = ({ isOpen, onClose }) => {
         };
 
     try {
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

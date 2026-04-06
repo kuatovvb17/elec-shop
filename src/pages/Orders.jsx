@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -6,7 +7,7 @@ const Orders = () => {
 
   useEffect(() => {
     // Маңызды: Адрес бэкэндтегімен (5000 порт) сәйкес келуі тиіс
-    fetch('http://localhost:5000/api/orders')
+    fetch(`${API_URL}/api/orders`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`Сервер қатесі: ${res.status}`); 

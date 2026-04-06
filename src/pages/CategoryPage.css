@@ -115,3 +115,15 @@
   padding: 100px 0;
   color: #888;
 }
+
+@media (max-width: 768px) {
+  .price-inputs-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .filter-sticky-bar {
+    justify-content: center;
+    padding: 15px;
+  }
+}

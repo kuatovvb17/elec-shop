@@ -235,17 +235,31 @@
   padding: 10px;
 }
 @media (max-width: 768px) {
-  .search-bar {
-    order: 3; /* Іздеу жолағын логотип пен иконкалардың астына түсіру */
+  .header-layout {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .gender-tabs {
+    display: none; /* Мобилкада табтарды жасыру немесе төменге түсіру */
+  }
+  .lamoda-search-container {
+    order: 3; /* Іздеу жолағын астына түсіру */
     width: 100%; 
+    max-width: 100%;
     margin-top: 10px;
   }
   
-  .nav-icons {
+  .cat-menu {
+    overflow-x: auto; /* Категорияларды скролданатындай қылу */
+    white-space: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .nav-icons-group {
     gap: 10px; /* Иконкалар арасын азайту */
   }
 
-  .logo {
-    font-size: 1.2rem; /* Логотипті сәл кішірейту */
+  .brand-logo {
+    font-size: 1.5rem; /* Логотипті сәл кішірейту */
   }
 }

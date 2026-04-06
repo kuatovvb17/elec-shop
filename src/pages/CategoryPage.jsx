@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { API_URL } from '../config';
 import './CategoryPage.css';
 
 // 1. Базадағы атауларды интерфейстегі атауларға сәйкестендіру
@@ -27,7 +28,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/products')
+    fetch(`${API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         // Базадағы балама атауларды алу

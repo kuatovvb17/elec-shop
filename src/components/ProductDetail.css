@@ -150,3 +150,31 @@
   align-items: center;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .lamoda-modal {
+    flex-direction: column;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .lamoda-content {
+    flex-direction: column;
+  }
+  
+  .lamoda-left {
+    min-height: 250px;
+  }
+  
+  .lamoda-right {
+    padding: 15px;
+  }
+  
+  .lamoda-close {
+    right: 10px;
+    top: 10px;
+    color: #000;
+    z-index: 10;
+  }
+}

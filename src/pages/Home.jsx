@@ -13,16 +13,13 @@ const Home = ({ addToCart, toggleFavorite, favorites, activeTab, activeCategory,
   const [selectedProduct, setSelectedProduct] = useState(null);
 
 useEffect(() => {
-    // ЕСКІ: fetch('http://localhost:5000/api/products')
-    // ЖАҢА (Render сілтемесі):
-    fetch('https://elec-shop-api.onrender.com/products') 
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Деректер сәтті келді:", data);
-        setProducts(data);
-      })
-      .catch(err => console.error("Тауарларды жүктеу қатесі:", err));
-  }, []);
+  // СІЛТЕМЕГЕ /api/ ҚОСУДЫ ҰМЫТПА:
+  fetch('https://elec-shop-api.onrender.com/api/products') 
+    .then((res) => res.json())
+    .then((data) => setProducts(data))
+    .catch(err => console.error("Қате:", err));
+}, []);
+
   // 2. ФИЛЬТРАЦИЯ ЛОГИКАСЫ (Гендер + Категория + Іздеу)
   const filteredProducts = products.filter((product) => {
     const matchGender = product.gender === activeTab;

@@ -184,3 +184,30 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 768px) {
+    .checkout-body {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .input-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkout-card {
+        padding: 20px;
+    }
+
+    .tab-switcher {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .tab {
+        flex: 1;
+        padding: 10px 5px;
+        text-align: center;
+    }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PlusCircle, Trash2, Edit, Save, X, RefreshCw, Package, ClipboardList } from 'lucide-react';
+import { API_URL } from '../config';
 import './Admin.css';
 
 const Admin = () => {
@@ -27,7 +28,7 @@ const Admin = () => {
   // --- ТАУАРЛАР ФУНКЦИЯЛАРЫ ---
   const fetchProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/products');
+      const res = await fetch(`${API_URL}/api/products`);
       const data = await res.json();
       setProducts(data);
     } catch (err) {
@@ -57,7 +58,7 @@ const Admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isEditing ? `http://localhost:5000/api/products/${editId}` : 'http://localhost:5000/api/products';
+    const url = isEditing ? `${API_URL}/api/products/${editId}` : `${API_URL}/api/products`;
     const method = isEditing ? 'PUT' : 'POST';
 
     try {
@@ -79,7 +80,7 @@ const Admin = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Бұл тауарды өшіруге сенімдісіз бе?")) {
       try {
-        await fetch(`http://localhost:5000/api/products/${id}`, { method: 'DELETE' });
+        await fetch(`${API_URL}/api/products/${id}`, { method: 'DELETE' });
         setProducts(products.filter(p => p.id !== id));
       } catch (err) {
         console.error("Өшіру қатесі:", err);
@@ -90,7 +91,7 @@ const Admin = () => {
   // --- ТАПСЫРЫСТАР ФУНКЦИЯЛАРЫ ---
   const fetchOrders = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/orders');
+      const res = await fetch(`${API_URL}/api/orders`);
       const data = await res.json();
       setOrders(data);
     } catch (err) {
@@ -100,7 +101,7 @@ const Admin = () => {
 
   const updateStatus = async (id, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${id}/status`, {
+      const res = await fetch(`${API_URL}/api/orders/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
