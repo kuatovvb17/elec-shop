@@ -1,23 +1,22 @@
-
 .wp2-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin: 40px 0;
-  height: 600px; 
+  height: 600px;
   width: 100%;
 }
 
 .wp2-side {
   display: grid;
-  grid-template-rows: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr;
   gap: 20px;
   height: 100%;
 }
 
 .wp2-item {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   background: #fcfcfc;
   overflow: hidden;
   border: 1px solid #eee;
@@ -25,9 +24,9 @@
 }
 
 .wp2-item img {
-  width: 50%; 
+  width: 50%;
   height: 100%;
-  object-fit: cover; /* */
+  object-fit: cover;
 }
 
 .wp2-item-info {
@@ -48,7 +47,7 @@
 .wp2-main img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* */
+  object-fit: cover;
 }
 
 .wp2-overlay {
@@ -57,7 +56,7 @@
   left: 0;
   width: 100%;
   padding: 30px;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
   color: white;
 }
 
@@ -73,6 +72,7 @@
     grid-template-columns: 1fr;
     height: auto;
   }
+
   .wp2-item {
     height: 150px;
   }

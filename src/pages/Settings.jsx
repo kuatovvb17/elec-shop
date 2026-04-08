@@ -3,16 +3,14 @@ import { User, Bell, Moon, Camera, Save, Mail, Edit3 } from 'lucide-react';
 import './Settings.css';
 
 const Settings = () => {
-  // LocalStorage-тан деректерді алу немесе дефолт мәндер
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {
     name: 'Bexultan',
     email: 'dosikloxshort@gmail.com'
   });
-  
-  const [darkMode, setDarkMode] = useState(localStorage.getItem('theme') === 'dark');
-  const [activeTab, setActiveTab] = useState('profile'); // 'profile' немесе 'notifications'
 
-  // Түнгі режим логикасы
+  const [darkMode, setDarkMode] = useState(localStorage.getItem('theme') === 'dark');
+  const [activeTab, setActiveTab] = useState('profile');
+
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
@@ -37,7 +35,7 @@ const Settings = () => {
         </header>
 
         <div className="settings-grid">
-          {/* Sidebar */}
+
           <aside className="settings-sidebar">
             <div className="profile-card-static">
               <div className="avatar-wrapper">
@@ -46,52 +44,48 @@ const Settings = () => {
               <h3>{user.name}</h3>
               <p>{user.email}</p>
             </div>
-            
+
             <nav className="settings-nav">
-              <button 
+              <button
                 className={`nav-item ${activeTab === 'profile' ? 'active' : ''}`}
                 onClick={() => setActiveTab('profile')}
               >
-                <User size={18}/> Жеке мәліметтер
+                <User size={18} /> Жеке мәліметтер
               </button>
-              <button 
+              <button
                 className={`nav-item ${activeTab === 'notifications' ? 'active' : ''}`}
                 onClick={() => setActiveTab('notifications')}
               >
-                <Bell size={18}/> Хабарландырулар
+                <Bell size={18} /> Хабарландырулар
               </button>
             </nav>
           </aside>
 
-          {/* Main Content */}
           <main className="settings-content">
             {activeTab === 'profile' ? (
               <section className="settings-section">
                 <h2>Аккаунт баптаулары</h2>
-                
-                {/* Никнейм өзгерту */}
+
                 <div className="setting-control-input">
                   <label><Edit3 size={16} /> Никнейм</label>
-                  <input 
-                    type="text" 
-                    value={user.name} 
-                    onChange={(e) => setUser({...user, name: e.target.value})}
+                  <input
+                    type="text"
+                    value={user.name}
+                    onChange={(e) => setUser({ ...user, name: e.target.value })}
                     placeholder="Атыңызды жазыңыз"
                   />
                 </div>
 
-                {/* Email өзгерту */}
                 <div className="setting-control-input">
                   <label><Mail size={16} /> Электрондық пошта</label>
-                  <input 
-                    type="email" 
-                    value={user.email} 
-                    onChange={(e) => setUser({...user, email: e.target.value})}
+                  <input
+                    type="email"
+                    value={user.email}
+                    onChange={(e) => setUser({ ...user, email: e.target.value })}
                     placeholder="Email жазыңыз"
                   />
                 </div>
 
-                {/* Түнгі режим */}
                 <div className="setting-control">
                   <div className="control-info">
                     <Moon size={20} />

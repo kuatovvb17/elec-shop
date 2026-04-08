@@ -6,15 +6,12 @@ import './Cart.css';
 const Cart = ({ cartItems, removeFromCart, updateQty, setTotalPrice }) => {
   const navigate = useNavigate();
 
-  // 1. Есептеулер
   const totalItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const totalPrice = cartItems.reduce((acc, item) => acc + (Number(item.price) * item.qty), 0);
-  
-  // Мысалы: 50 000 теңгеден асса 10% жеңілдік
+
   const discount = totalPrice > 50000 ? totalPrice * 0.1 : 0;
   const finalAmount = totalPrice - discount;
 
-  // 2. Төлем бетіне өтер алдында соманы App.js-ке сақтау
   const handleProceed = () => {
     setTotalPrice(finalAmount);
   };
@@ -43,12 +40,12 @@ const Cart = ({ cartItems, removeFromCart, updateQty, setTotalPrice }) => {
           <div className="cart-items-list">
             {cartItems.map((item) => (
               <div key={item.id} className="cart-item-card">
-                
+
                 <div className="item-image">
                   {item.image_url ? (
-                    <img 
-                      src={item.image_url} 
-                      alt={item.name} 
+                    <img
+                      src={item.image_url}
+                      alt={item.name}
                       onError={(e) => { e.target.src = 'https://via.placeholder.com/120x160?text=No+Image'; }}
                     />
                   ) : (
@@ -58,7 +55,7 @@ const Cart = ({ cartItems, removeFromCart, updateQty, setTotalPrice }) => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="item-details">
                   <div className="item-info-top">
                     <div>
@@ -87,7 +84,7 @@ const Cart = ({ cartItems, removeFromCart, updateQty, setTotalPrice }) => {
                 </div>
               </div>
             ))}
-            
+
             <button className="back-btn" onClick={() => navigate('/')}>
               <ArrowLeft size={18} /> Сатып алуды жалғастыру
             </button>
@@ -100,14 +97,14 @@ const Cart = ({ cartItems, removeFromCart, updateQty, setTotalPrice }) => {
                 <span>{totalItems} өнім</span>
                 <span>{totalPrice.toLocaleString()} ₸</span>
               </div>
-              
+
               {discount > 0 && (
                 <div className="summary-row text-red">
                   <span>Жеңілдік (10%)</span>
                   <span>-{discount.toLocaleString()} ₸</span>
                 </div>
               )}
-              
+
               <div className="summary-row">
                 <span>Жеткізу</span>
                 <span>Тегін</span>
@@ -116,8 +113,7 @@ const Cart = ({ cartItems, removeFromCart, updateQty, setTotalPrice }) => {
                 <span>Барлығы</span>
                 <span>{finalAmount.toLocaleString()} ₸</span>
               </div>
-              
-              {/* handleProceed функциясы арқылы соманы жібереміз */}
+
               <Link to="/checkout" onClick={handleProceed}>
                 <button className="checkout-btn">
                   ЕСЕПКЕ АЛУДЫ ЖАЛҒАСТЫРЫҢЫЗ

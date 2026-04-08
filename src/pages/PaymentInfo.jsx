@@ -4,23 +4,20 @@ import './PaymentInfo.css';
 const PaymentInfo = () => {
   return (
     <div className="payment-page-container">
-      {/* Секция баннера */}
       <div className="payment-hero-banner">
         <div className="hero-image-wrapper">
-          {/* Используем надежную ссылку для фона */}
-          <img 
-            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop" 
-            alt="Fashion Banner" 
+          <img
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop"
+            alt="Fashion Banner"
             className="hero-img-element"
-            onError={(e) => { e.target.src = "https://via.placeholder.com/1200x400?text=Lamoda+Style"; }} // Заглушка на случай ошибки
+            onError={(e) => { e.target.src = "https://via.placeholder.com/1200x400?text=Lamoda+Style"; }}
           />
           <div className="hero-text-overlay">
-            <h1>Қалаған кезде<br/>Төлеңіз!*</h1>
+            <h1>Қалаған кезде<br />Төлеңіз!*</h1>
           </div>
         </div>
       </div>
 
-      {/* Сетка с информацией */}
       <div className="payment-info-flex-grid">
         <div className="payment-info-item">
           <div className="icon-circle">📱</div>

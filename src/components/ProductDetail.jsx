@@ -3,23 +3,22 @@ import './ProductDetail.css';
 
 const ProductDetail = ({ product, onClose, addToCart }) => {
   const [selectedSize, setSelectedSize] = useState('');
-  const [color, setColor] = useState('Белый'); // Бастапқы түс
+  const [color, setColor] = useState('Белый');
 
   if (!product) return null;
 
   return (
     <div className="lamoda-overlay" onClick={onClose}>
       <div className="lamoda-modal" onClick={(e) => e.stopPropagation()}>
-        {/* Жабу батырмасы */}
+
         <button className="lamoda-close" onClick={onClose}>✕</button>
-        
+
         <div className="lamoda-content">
-          {/* СОЛ ЖАҚ: Сурет бөлімі */}
+
           <div className="lamoda-left">
             <img src={product.image_url} alt={product.name} />
           </div>
 
-          {/* ОҢ ЖАҚ: Мәліметтер бөлімі */}
           <div className="lamoda-right">
             <div className="lamoda-header">
               <div className="lamoda-stars">
@@ -29,17 +28,16 @@ const ProductDetail = ({ product, onClose, addToCart }) => {
               <p className="lamoda-subtitle">{product.name}</p>
             </div>
 
-            {/* Баға бөлімі - Тек негізгі баға қалды */}
             <div className="lamoda-price-row">
               <span className="price-new">{product.price.toLocaleString()} ₸</span>
             </div>
 
             <div className="lamoda-controls">
-              {/* ТҮСТІ ТАНДАУ (SELECT) */}
+
               <div className="control-item">
                 <label>Түсі:</label>
-                <select 
-                  className="lamoda-select" 
+                <select
+                  className="lamoda-select"
                   value={color}
                   onChange={(e) => setColor(e.target.value)}
                 >
@@ -50,9 +48,8 @@ const ProductDetail = ({ product, onClose, addToCart }) => {
                 </select>
               </div>
 
-              {/* ӨЛШЕМДЕРДІ ТАНДАУ */}
               <div className="control-item">
-                <select 
+                <select
                   className="lamoda-select"
                   value={selectedSize}
                   onChange={(e) => setSelectedSize(e.target.value)}
@@ -67,18 +64,16 @@ const ProductDetail = ({ product, onClose, addToCart }) => {
               </div>
             </div>
 
-            {/* Түймелер бөлімі */}
             <div className="lamoda-buttons">
-              <button 
+              <button
                 className="btn-black"
-                onClick={() => addToCart({...product, size: selectedSize, color})}
+                onClick={() => addToCart({ ...product, size: selectedSize, color })}
               >
                 Себетке қосу
               </button>
               <button className="btn-wish">♡</button>
             </div>
 
-            {/* "О товаре" және "Размер в размер" бөлімдері толық алынып тасталды */}
           </div>
         </div>
       </div>

@@ -5,17 +5,15 @@ const PromoBanner = () => {
   return (
     <div className="container">
       <div className="promo-grid">
-        {/* Сол жақтағы үлкен баннер */}
         <div className="promo-main">
           <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=80" alt="Trend" />
           <div className="promo-overlay">
             <span className="promo-tag">ТРЕНД</span>
-            <h2 className="promo-title">терең<br/>көк</h2>
-            <p className="promo-subtitle">Сіздің стильдік нұсқаулық<br/><span>Жақын арада танысыңыз</span></p>
+            <h2 className="promo-title">терең<br />көк</h2>
+            <p className="promo-subtitle">Сіздің стильдік нұсқаулық<br /><span>Жақын арада танысыңыз</span></p>
           </div>
         </div>
 
-        {/* Оң жақтағы екі кіші баннер */}
         <div className="promo-side">
           <div className="promo-item">
             <img src="https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=500&q=80" alt="Shoes" />

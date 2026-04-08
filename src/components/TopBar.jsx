@@ -12,8 +12,7 @@ const TopBar = () => {
   return (
     <div className="top-bar">
       <div className="top-bar-container">
-        
-        {/* Сол жақ: Қала таңдау */}
+
         <div className="city-dropdown-wrapper">
           <div className="city-current">
             <CiLocationOn className="top-icon" />
@@ -27,8 +26,7 @@ const TopBar = () => {
             ))}
           </ul>
         </div>
-        
-        {/* Оң жақ: Сілтемелер */}
+
         <div className="top-bar-right">
           <Link to="/delivery-info" className="top-link">
             <TfiPackage className="top-icon" />

@@ -8,16 +8,15 @@ const AuthModal = ({ isOpen, onClose }) => {
   const [isLoginView, setIsLoginView] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
-    identifier: '', // Email немесе телефон (Кіру үшін)
-    email: '',      // Тек тіркелу үшін
-    phone: '',      // Тек тіркелу үшін
+    identifier: '',
+    email: '',
+    phone: '',
     password: ''
   });
   const [errors, setErrors] = useState({});
 
   if (!isOpen) return null;
 
-  // Форманы тексеру (Validation)
   const validate = () => {
     let newErrors = {};
     if (isLoginView) {
@@ -30,7 +29,7 @@ const AuthModal = ({ isOpen, onClose }) => {
     if (formData.password.length < 6) {
       newErrors.password = "Құпиясөз кем дегенде 6 символ болуы керек";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -40,14 +39,14 @@ const AuthModal = ({ isOpen, onClose }) => {
     if (!validate()) return;
 
     const endpoint = isLoginView ? '/api/login' : '/api/register';
-    const payload = isLoginView 
+    const payload = isLoginView
       ? { identifier: formData.identifier, password: formData.password }
-      : { 
-          name: formData.name, 
-          email: formData.email, 
-          phone: formData.phone, 
-          password: formData.password 
-        };
+      : {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password
+      };
 
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
@@ -60,30 +59,27 @@ const AuthModal = ({ isOpen, onClose }) => {
 
       if (response.ok) {
         if (isLoginView) {
-          // 1. Мәліметтерді сақтау
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
 
-          // 2. Рөлді және Админ екенін тексеру
           const isAdminUser = data.user.role === 'admin' || data.user.email === 'admin@mail.ru';
-          
+
           if (isAdminUser) {
             localStorage.setItem('isAdmin', 'true');
             alert("Қош келдіңіз, Админ!");
             onClose();
-            navigate('/admin'); // Админ панельге жіберу
+            navigate('/admin');
           } else {
             localStorage.setItem('isAdmin', 'false');
             alert(`Қош келдіңіз, ${data.user.name}!`);
             onClose();
-            navigate('/'); // Басты бетке жіберу
+            navigate('/');
           }
-          
-          // 3. Интерфейс күйін (Navbar т.б.) жаңарту үшін бетті қайта жүктеу
-          window.location.reload(); 
+
+          window.location.reload();
         } else {
           alert("Тіркелу сәтті өтті! Енді жүйеге кіріңіз.");
-          setIsLoginView(true); // Пайдаланушыны "Кіру" бетіне ауыстыру
+          setIsLoginView(true);
         }
       } else {
         alert(data.error || "Қате орын алды");
@@ -98,30 +94,29 @@ const AuthModal = ({ isOpen, onClose }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose}>&times;</button>
-        
+
         <h2>{isLoginView ? 'Кіру' : 'Тіркелу'}</h2>
-        
+
         <form onSubmit={handleSubmit}>
-          {/* Тек тіркелу кезінде көрінетін "Аты" жолағы */}
           {!isLoginView && (
             <div className="input-group">
-              <input 
-                type="text" 
-                placeholder="Аты" 
+              <input
+                type="text"
+                placeholder="Аты"
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})} 
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
               {errors.name && <span className="error-text">{errors.name}</span>}
             </div>
           )}
 
           <div className="input-group">
-            <input 
-              type="text" 
-              placeholder={isLoginView ? "Email немесе телефон" : "Email"} 
+            <input
+              type="text"
+              placeholder={isLoginView ? "Email немесе телефон" : "Email"}
               value={isLoginView ? formData.identifier : formData.email}
               onChange={(e) => setFormData({
-                ...formData, 
+                ...formData,
                 [isLoginView ? 'identifier' : 'email']: e.target.value
               })}
             />
@@ -130,25 +125,24 @@ const AuthModal = ({ isOpen, onClose }) => {
             )}
           </div>
 
-          {/* Тек тіркелу кезінде көрінетін "Телефон" жолағы */}
           {!isLoginView && (
             <div className="input-group">
-              <input 
-                type="text" 
-                placeholder="Телефон нөмірі" 
+              <input
+                type="text"
+                placeholder="Телефон нөмірі"
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})} 
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               />
               {errors.phone && <span className="error-text">{errors.phone}</span>}
             </div>
           )}
 
           <div className="input-group">
-            <input 
-              type="password" 
-              placeholder="Құпиясөз" 
+            <input
+              type="password"
+              placeholder="Құпиясөз"
               value={formData.password}
-              onChange={(e) => setFormData({...formData, password: e.target.value})} 
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
             {errors.password && <span className="error-text">{errors.password}</span>}
           </div>
@@ -161,12 +155,12 @@ const AuthModal = ({ isOpen, onClose }) => {
         <div className="auth-footer">
           <p>
             {isLoginView ? "Есептік жазбаңыз жоқ па?" : "Есептік жазбаңыз бар ма?"}
-            <button 
-              type="button" 
-              className="toggle-auth-btn" 
+            <button
+              type="button"
+              className="toggle-auth-btn"
               onClick={() => {
                 setIsLoginView(!isLoginView);
-                setErrors({}); // Ауысқан кезде қателерді тазалау
+                setErrors({});
               }}
             >
               {isLoginView ? 'Тіркелу' : 'Кіру'}

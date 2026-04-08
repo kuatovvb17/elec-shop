@@ -1,12 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,      // Портты нақты бекітеміз
-    strictPort: true, // Егер порт бос болмаса, қате берсін (басқасына ауыспайды)
-    host: true       // Желіге (Network) ашу үшін
+    port: 5173,
+    strictPort: true,
+    host: true
   }
 })

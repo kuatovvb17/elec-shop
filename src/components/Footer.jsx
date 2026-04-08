@@ -4,7 +4,6 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer-main">
-      {/* 1. Жоғарғы бөлім: Жазылу және Сілтемелер */}
       <div className="footer-top-section">
         <div className="footer-subscribe-block">
           <h3>Жаңа шығарылымдар мен акцияларға жазылу үшін 10% жеңілдік</h3>
@@ -41,21 +40,20 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* 2. Ортаңғы бөлім: Төлем жүйелері мен Табтар */}
       <div className="footer-bottom-section">
         <div className="payment-info">
-          <img 
-            src="https://i.pinimg.com/1200x/3b/38/ef/3b38ef8f2bf7505815dbbe732d838ddc.jpg" 
-            alt="Visa" 
+          <img
+            src="https://i.pinimg.com/1200x/3b/38/ef/3b38ef8f2bf7505815dbbe732d838ddc.jpg"
+            alt="Visa"
           />
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" 
-            alt="Mastercard" 
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+            alt="Mastercard"
           />
           <span>
             Басқа төлем әдістері қол жетімді</span>
         </div>
-        
+
         <div className="footer-seo-tabs">
           <span>Әйелдерге</span>
           <span className="active-tab">Ерлерге</span>
@@ -64,7 +62,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* 3. Төменгі бөлім: SEO Мәтіндері (Ортаға келтірілген) */}
       <div className="footer-seo-container">
         <div className="footer-seo-content">
           <div className="seo-block">
@@ -77,7 +74,7 @@ const Footer = () => {
 
           <div className="seo-block">
             <h4>Киіп көру мүмкіндігімен жеткізу</h4>
-            <p>Каталогтан тапсырыс берілген өнімдерді төлемге дейін сынап көруге болады. 
+            <p>Каталогтан тапсырыс берілген өнімдерді төлемге дейін сынап көруге болады.
               Тапсырыстарды Алматы, Астана және Қазақстанға жеткіземіз.
             </p>
           </div>
@@ -86,7 +83,7 @@ const Footer = () => {
             <h4>Төлем және қайтару</h4>
             <p>
               Сатып алуды онлайн немесе қолма-қол ақшамен немесе жеткізу кезінде несие картасымен төлей аласыз.
-Сіз заттарды 14 күн ішінде қайтара аласыз.
+              Сіз заттарды 14 күн ішінде қайтара аласыз.
             </p>
           </div>
         </div>

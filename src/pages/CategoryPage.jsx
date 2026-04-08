@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { API_URL } from '../config';
 import './CategoryPage.css';
 
-// 1. Базадағы атауларды интерфейстегі атауларға сәйкестендіру
 const categoryMap = {
   "Киім": ["Киім", "Одежда", "Балалар киімі"],
   "Аяқ киім": ["Аяқ киім", "Обувь", "Балалар аяқ киімі"],
@@ -16,8 +15,8 @@ const categoryMap = {
 };
 
 const CategoryPage = () => {
-  const [allProducts, setAllProducts] = useState([]); // Категорияның барлық тауарлары
-  const [displayProducts, setDisplayProducts] = useState([]); // Фильтрленген тауарлар
+  const [allProducts, setAllProducts] = useState([]);
+  const [displayProducts, setDisplayProducts] = useState([]);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [loading, setLoading] = useState(true);
@@ -31,16 +30,14 @@ const CategoryPage = () => {
     fetch(`${API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
-        // Базадағы балама атауларды алу
         const dbCategories = categoryMap[categoryName] || [categoryName];
 
-        // Категория бойынша сүзу
-        const filteredByCategory = data.filter(p => 
-          p.category && dbCategories.some(cat => 
+        const filteredByCategory = data.filter(p =>
+          p.category && dbCategories.some(cat =>
             cat.toLowerCase().trim() === p.category.toString().toLowerCase().trim()
           )
         );
-        
+
         setAllProducts(filteredByCategory);
         setDisplayProducts(filteredByCategory);
         setLoading(false);
@@ -51,13 +48,11 @@ const CategoryPage = () => {
       });
   }, [categoryName]);
 
-  // Баға бойынша фильтрлеу функциясы
   const handleApplyFilter = () => {
     const min = minPrice === '' ? 0 : Number(minPrice);
     const max = maxPrice === '' ? Infinity : Number(maxPrice);
 
     const filteredByPrice = allProducts.filter(p => {
-      // Бағадағы бос орындарды тазалап, санға айналдыру
       const cleanPrice = Number(p.price.toString().replace(/[^0-9.-]+/g, ""));
       return cleanPrice >= min && cleanPrice <= max;
     });
@@ -85,18 +80,18 @@ const CategoryPage = () => {
           <div className="price-inputs-row">
             <span className="filter-label">Бағасы:</span>
             <div className="input-group">
-              <input 
-                type="number" 
-                placeholder="0" 
-                value={minPrice} 
-                onChange={(e) => setMinPrice(e.target.value)} 
+              <input
+                type="number"
+                placeholder="0"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
               />
               <span className="dash">—</span>
-              <input 
-                type="number" 
-                placeholder="max" 
-                value={maxPrice} 
-                onChange={(e) => setMaxPrice(e.target.value)} 
+              <input
+                type="number"
+                placeholder="max"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
               />
               <span className="currency">₸</span>
             </div>

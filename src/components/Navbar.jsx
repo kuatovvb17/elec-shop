@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, ShoppingBag, Search, Heart, Settings } from 'lucide-react'; 
-import AuthModal from '../pages/AuthModal'; 
-import ProfileModal from '../pages/ProfileModal'; 
+import { User, ShoppingBag, Search, Heart, Settings } from 'lucide-react';
+import AuthModal from '../pages/AuthModal';
+import ProfileModal from '../pages/ProfileModal';
 import './Navbar.css';
 
 const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setActiveCategory, setSearchQuery }) => {
@@ -22,7 +22,7 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
     const checkAuth = () => {
       const savedUser = localStorage.getItem('user');
       const adminStatus = localStorage.getItem('isAdmin') === 'true';
-      
+
       if (savedUser) {
         setUser(JSON.parse(savedUser));
         setIsAdmin(adminStatus);
@@ -50,8 +50,8 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
       setUser(null);
       setIsAdmin(false);
       setIsProfileOpen(false);
-      navigate('/'); 
-      window.location.reload(); 
+      navigate('/');
+      window.location.reload();
     }
   };
 
@@ -59,12 +59,11 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
     <nav className="navbar-lamoda">
       <div className="main-header">
         <div className="container header-layout">
-          {/* --- 1. Гендерлік табтар --- */}
           <div className="gender-tabs">
             {['women', 'men', 'kids'].map((tab) => (
-              <span 
+              <span
                 key={tab}
-                className={activeTab === tab ? 'active' : ''} 
+                className={activeTab === tab ? 'active' : ''}
                 onClick={() => handleTabChange(tab)}
               >
                 {tab === 'women' ? 'Әйелдерге' : tab === 'men' ? 'Ерлерге' : 'Балаларға'}
@@ -72,15 +71,13 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
             ))}
           </div>
 
-          {/* --- 2. Логотип --- */}
           <Link to="/" className="brand-logo" onClick={() => setActiveCategory('all')}>
             <span className="dark-j">Januya</span><span className="light-da">DA</span>
           </Link>
 
-          {/* --- 3. Навигациялық иконкалар --- */}
           <div className="user-nav">
             <div className="nav-icons-group">
-              
+
               {isAdmin && (
                 <Link to="/admin" className="nav-item-icon admin-special">
                   <Settings size={26} strokeWidth={1.5} color="#000" />
@@ -109,7 +106,7 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
                   <span>Кіру</span>
                 </div>
               )}
-              
+
               <Link to="/cart" className="nav-item-icon" style={{ textDecoration: 'none' }}>
                 <div className="bag-icon-wrapper">
                   <ShoppingBag size={26} strokeWidth={1.5} />
@@ -123,7 +120,6 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
         </div>
       </div>
 
-      {/* --- 4. Төменгі бөлім: Категориялар мен Поиск --- */}
       <div className="bottom-header">
         <div className="container search-layout">
           <ul className="cat-menu">
@@ -133,13 +129,13 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
               </li>
             ))}
           </ul>
-          
+
           <div className="lamoda-search-container">
-            <input 
-              type="text" 
-              className="lamoda-search-input" 
-              placeholder="Іздеу..." 
-              onChange={(e) => setSearchQuery(e.target.value)} // Live Search логикасы
+            <input
+              type="text"
+              className="lamoda-search-input"
+              placeholder="Іздеу..."
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <button className="lamoda-search-button">
               <Search size={20} color="white" />
@@ -149,13 +145,13 @@ const Navbar = ({ cartCount, favoritesCount = 0, activeTab, setActiveTab, setAct
       </div>
 
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
-      
+
       {user && (
-        <ProfileModal 
-          isOpen={isProfileOpen} 
-          onClose={() => setIsProfileOpen(false)} 
-          user={user} 
-          onLogout={handleLogout} 
+        <ProfileModal
+          isOpen={isProfileOpen}
+          onClose={() => setIsProfileOpen(false)}
+          user={user}
+          onLogout={handleLogout}
           isAdmin={isAdmin}
         />
       )}

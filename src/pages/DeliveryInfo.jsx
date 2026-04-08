@@ -4,21 +4,20 @@ import './DeliveryInfo.css';
 const DeliveryInfo = () => {
   return (
     <div className="delivery-page-container">
-      {/* Басты баннер */}
+
       <div className="delivery-hero-banner">
         <div className="hero-image-wrapper">
-          <img 
-            src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=2070&auto=format&fit=crop" 
-            alt="Delivery Banner" 
+          <img
+            src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=2070&auto=format&fit=crop"
+            alt="Delivery Banner"
             className="hero-img-element"
           />
           <div className="hero-text-overlay">
-            <h1>Киіп көру<br/>мүмкіндігімен жеткізу</h1>
+            <h1>Киіп көру<br />мүмкіндігімен жеткізу</h1>
           </div>
         </div>
       </div>
 
-      {/* Ақпараттық карточкалар (Суреттерімен) */}
       <div className="delivery-grid">
         <div className="delivery-card">
           <div className="card-image">

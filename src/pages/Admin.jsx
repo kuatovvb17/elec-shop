@@ -4,28 +4,25 @@ import { API_URL } from '../config';
 import './Admin.css';
 
 const Admin = () => {
-  // --- STATE ---
   const [products, setProducts] = useState([]);
-  const [orders, setOrders] = useState([]); // Тапсырыстар үшін
+  const [orders, setOrders] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
-  
-  const [formData, setFormData] = useState({ 
-    name: '', 
-    price: '', 
-    image_url: '', 
-    category: 'Киім', 
+
+  const [formData, setFormData] = useState({
+    name: '',
+    price: '',
+    image_url: '',
+    category: 'Киім',
     gender: 'women',
-    description: '' 
+    description: ''
   });
 
-  // --- ЭФФЕКТТЕР ---
   useEffect(() => {
     fetchProducts();
-    fetchOrders(); // Компонент жүктелгенде тапсырыстарды да алу
+    fetchOrders();
   }, []);
 
-  // --- ТАУАРЛАР ФУНКЦИЯЛАРЫ ---
   const fetchProducts = async () => {
     try {
       const res = await fetch(`${API_URL}/api/products`);
@@ -88,7 +85,6 @@ const Admin = () => {
     }
   };
 
-  // --- ТАПСЫРЫСТАР ФУНКЦИЯЛАРЫ ---
   const fetchOrders = async () => {
     try {
       const res = await fetch(`${API_URL}/api/orders`);
@@ -108,7 +104,7 @@ const Admin = () => {
       });
       if (res.ok) {
         alert("Статус өзгертілді!");
-        fetchOrders(); // Тізімді жаңарту
+        fetchOrders();
       }
     } catch (err) {
       console.error("Статусты жаңарту қатесі:", err);
@@ -124,41 +120,40 @@ const Admin = () => {
         </button>
       </div>
 
-      {/* 1-бөлім: Тауарды қосу/өңдеу */}
       <section className="admin-card">
         <h2>{isEditing ? 'Тауарды өңдеу' : 'Жаңа тауар қосу'}</h2>
         <form onSubmit={handleSubmit} className="admin-form">
           <div className="form-group">
-            <input 
-              type="text" 
-              placeholder="Тауар аты" 
+            <input
+              type="text"
+              placeholder="Тауар аты"
               value={formData.name}
-              onChange={e => setFormData({...formData, name: e.target.value})} 
-              required 
+              onChange={e => setFormData({ ...formData, name: e.target.value })}
+              required
             />
-            <input 
-              type="number" 
-              placeholder="Бағасы" 
+            <input
+              type="number"
+              placeholder="Бағасы"
               value={formData.price}
-              onChange={e => setFormData({...formData, price: e.target.value})} 
-              required 
+              onChange={e => setFormData({ ...formData, price: e.target.value })}
+              required
             />
           </div>
-          <input 
-            type="text" 
-            placeholder="Сурет сілтемесі (URL)" 
+          <input
+            type="text"
+            placeholder="Сурет сілтемесі (URL)"
             value={formData.image_url}
-            onChange={e => setFormData({...formData, image_url: e.target.value})} 
-            required 
+            onChange={e => setFormData({ ...formData, image_url: e.target.value })}
+            required
           />
           <div className="form-group">
-            <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
+            <select value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })}>
               <option value="Киім">Киім</option>
               <option value="Аяқ киім">Аяқ киім</option>
               <option value="Аксессуарлар">Аксессуарлар</option>
               <option value="Сұлулық">Сұлулық</option>
             </select>
-            <select value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
+            <select value={formData.gender} onChange={e => setFormData({ ...formData, gender: e.target.value })}>
               <option value="women">Әйелдер</option>
               <option value="men">Ерлер</option>
               <option value="kids">Балалар</option>
@@ -177,7 +172,6 @@ const Admin = () => {
         </form>
       </section>
 
-      {/* 2-бөлім: Тапсырыстарды басқару */}
       <section className="admin-card orders-section">
         <h2><ClipboardList size={22} /> Тапсырыстарды басқару</h2>
         <div className="table-responsive">
@@ -197,14 +191,14 @@ const Admin = () => {
                   <td>{order.user_name}</td>
                   <td>
                     <span className={`badge ${order.status}`}>
-                      {order.status === 'paid' ? 'Төленді' : 
-                       order.status === 'shipping' ? 'Жолда' : 'Жеткізілді'}
+                      {order.status === 'paid' ? 'Төленді' :
+                        order.status === 'shipping' ? 'Жолда' : 'Жеткізілді'}
                     </span>
                   </td>
                   <td>
-                    <select 
+                    <select
                       className="status-select"
-                      onChange={(e) => updateStatus(order.id, e.target.value)} 
+                      onChange={(e) => updateStatus(order.id, e.target.value)}
                       value={order.status}
                     >
                       <option value="paid">Төленді</option>
@@ -219,7 +213,6 @@ const Admin = () => {
         </div>
       </section>
 
-      {/* 3-бөлім: Тауарлар тізімі */}
       <section className="products-list">
         <h2>Барлық тауарлар ({products.length})</h2>
         <div className="table-responsive">
@@ -236,7 +229,7 @@ const Admin = () => {
             <tbody>
               {products.map(product => (
                 <tr key={product.id} className={editId === product.id ? "editing-row" : ""}>
-                  <td><img src={product.image_url} alt="" width="50" style={{borderRadius: '4px'}} /></td>
+                  <td><img src={product.image_url} alt="" width="50" style={{ borderRadius: '4px' }} /></td>
                   <td>{product.name}</td>
                   <td>{Number(product.price).toLocaleString()} ₸</td>
                   <td>{product.category}</td>

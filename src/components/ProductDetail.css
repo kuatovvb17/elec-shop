@@ -1,29 +1,26 @@
-/* Модальды терезе фоны */
 .lamoda-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); 
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10000; 
+  z-index: 10000;
 }
 
-/* Модальды терезе корпусы */
 .lamoda-modal {
   background: #fff;
-  width: 900px; 
+  width: 900px;
   max-width: 95%;
   height: 600px;
   position: relative;
   display: flex;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Жабу батырмасы */
 .lamoda-close {
   position: absolute;
   right: -30px;
@@ -40,7 +37,6 @@
   width: 100%;
 }
 
-/* Сол жақ: Сурет */
 .lamoda-left {
   flex: 1.2;
   background: #f4f4f4;
@@ -50,21 +46,20 @@
 .lamoda-left img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Сурет толық көрінуі үшін */
+  object-fit: contain;
 }
 
-/* Оң жақ: Мәліметтер */
 .lamoda-right {
   flex: 1;
   padding: 30px;
   overflow-y: auto;
   display: flex;
-  flex-direction: column; /* Элементтерді тігінен тізу */
+  flex-direction: column;
   text-align: left;
 }
 
 .lamoda-title {
-  font-size: 28px; /* Сәл үлкейттік */
+  font-size: 28px;
   font-weight: 800;
   margin: 10px 0 5px 0;
   color: #000;
@@ -76,24 +71,22 @@
   margin-bottom: 20px;
 }
 
-/* БАҒА БӨЛІМІ - ТҮЗЕТІЛДІ */
 .lamoda-price-row {
   display: flex;
-  align-items: baseline; /* Мәтіндерді бір сызыққа қою */
-  justify-content: flex-start; /* Сол жаққа түзулеу */
+  align-items: baseline;
+  justify-content: flex-start;
   gap: 10px;
   margin: 15px 0;
   width: 100%;
 }
 
 .price-new {
-  color: #000; /* Немесе қызыл қаласаң: #f91111 */
-  font-size: 22px; /* Баға анық көрінуі керек */
+  color: #000;
+  font-size: 22px;
   font-weight: 700;
-  margin: 0; /* Артық маргинді алып тастадық */
+  margin: 0;
 }
 
-/* Инпуттар мен Селекттер */
 .control-item {
   margin-bottom: 15px;
   width: 100%;
@@ -109,18 +102,17 @@
 .lamoda-select {
   width: 100%;
   padding: 12px;
-  border: 1px solid #000; /* Lamoda стилінде қара шекара жиі кездеседі */
+  border: 1px solid #000;
   background-color: #fff;
   font-size: 14px;
   cursor: pointer;
   outline: none;
 }
 
-/* Түймелер */
 .lamoda-buttons {
   display: flex;
   gap: 10px;
-  margin-top: auto; /* Түймелерді төменге итеру */
+  margin-top: auto;
   padding-top: 20px;
 }
 
@@ -158,19 +150,19 @@
     max-height: 90vh;
     overflow-y: auto;
   }
-  
+
   .lamoda-content {
     flex-direction: column;
   }
-  
+
   .lamoda-left {
     min-height: 250px;
   }
-  
+
   .lamoda-right {
     padding: 15px;
   }
-  
+
   .lamoda-close {
     right: 10px;
     top: 10px;

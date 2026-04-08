@@ -1,18 +1,16 @@
-/* Жалпы контейнер - оң және сол жақты бөлу */
 .men-department-section {
   display: grid;
-  grid-template-columns: 2fr 0.8fr; /* Сол жақ 2 үлес, оң жақ 0.8 үлес */
+  grid-template-columns: 2fr 0.8fr;
   gap: 15px;
   max-width: 1300px;
   margin: 20px auto;
-  height: 450px; /* Биіктігін бекіттік */
+  height: 450px;
 }
 
-/* Сол жақтағы үлкен баннер */
 .large-banner {
   position: relative;
-  background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, transparent 100%),
-              url('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2000'); 
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%),
+    url('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=2000');
   background-size: cover;
   background-position: center top;
   border-radius: 8px;
@@ -24,7 +22,6 @@
   color: white;
 }
 
-/* Оң жақтағы баған (екі кіші баннер үшін) */
 .small-banners-column {
   display: flex;
   flex-direction: column;
@@ -33,7 +30,7 @@
 }
 
 .small-banner {
-  flex: 1; /* Екі баннер тең бөлінеді */
+  flex: 1;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -44,7 +41,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6; /* Мәтін анық көрінуі үшін */
+  opacity: 0.6;
 }
 
 .small-banner-text {
@@ -55,7 +52,6 @@
   z-index: 2;
 }
 
-/* Сары/Алтын блок */
 .central-gold-box {
   background: #d4af37;
   color: #000;
@@ -75,7 +71,6 @@
   opacity: 0.7;
 }
 
-/* Навигация батырмалары */
 .banner-navigation {
   display: flex;
   align-items: center;
@@ -84,7 +79,7 @@
 }
 
 .nav-arrow {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid white;
   color: white;
   cursor: pointer;

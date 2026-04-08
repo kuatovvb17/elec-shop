@@ -1,8 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Жаңа импорт
+import { useNavigate } from 'react-router-dom';
 import './CategoryIcons.css';
 
-// --- СУРЕТТЕРДІ ИМПОРТТАУ ---
 import verhnyayaOdezhda from '../assets/categoriesimg/верхняя одежда.jpg';
 import krossovki from '../assets/categoriesimg/кроссовки и кеды.jpg';
 import sizePlus from '../assets/categoriesimg/size plus.jpg';
@@ -13,11 +12,11 @@ import aksessuary from '../assets/categoriesimg/аксессуары.jpg';
 import platya from '../assets/categoriesimg/платья и сарафаны.jpg';
 import svitery from '../assets/categoriesimg/svitery.jpg';
 import tufli from '../assets/categoriesimg/туфли.jpg';
-import nosik from '../assets/categoriesimg/носик.jpg'; 
+import nosik from '../assets/categoriesimg/носик.jpg';
 import botinki from '../assets/categoriesimg/ботинки.jpg';
 
 const CategoryIcons = () => {
-  const navigate = useNavigate(); // Навигация функциясы
+  const navigate = useNavigate();
 
   const categories = [
     { name: "Сыртқы киім", img: verhnyayaOdezhda, slug: "outerwear" },
@@ -41,11 +40,11 @@ const CategoryIcons = () => {
       </div>
       <div className="category-icons-grid">
         {categories.map((cat, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="category-icon-item"
-            onClick={() => navigate(`/category?type=${cat.name}`)} // Басқанда өту
-            style={{ cursor: 'pointer' }} // Қолдың иконкасы шығу үшін
+            onClick={() => navigate(`/category?type=${cat.name}`)}
+            style={{ cursor: 'pointer' }}
           >
             <span className="cat-name">{cat.name}</span>
             <img src={cat.img} alt={cat.name} />

@@ -1,38 +1,42 @@
-/* Модалканың сырты (көлеңке) */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Сәл қоюлау қылдық */
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
-  backdrop-filter: blur(4px); /* Артқы жақты сәл бұлдырату (эстетика) */
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
   background: white;
   padding: 40px;
   border-radius: 16px;
-  width: 95%; /* Сәл кеңірек қылдық */
+  width: 95%;
   max-width: 400px;
   position: relative;
-  
-  /* ОСЫ 3 ЖОЛДЫ ҚОСЫҢЫЗ */
+
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* Ішіндегілерді шетіне дейін созады */
+  align-items: stretch;
 }
 
 @keyframes fadeIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-/* Жабу батырмасы (X) */
 .close-btn {
   position: absolute;
   top: 15px;
@@ -55,16 +59,16 @@ h2 {
   color: #111;
 }
 
-/* Инпуттар тобы */
 .input-group {
   margin-bottom: 15px;
   text-align: left;
-  width: 100%; /* ОСЫ ЖОЛДЫ ҚОС */
-}.input-group input {
-  display: block; /* ОСЫ ЖОЛДЫ ҚОС */
+  width: 100%;
+}
+
+.input-group input {
+  display: block;
   width: 100%;
   padding: 14px;
-  /* ... қалған кодтар сол күйі қалады ... */
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-sizing: border-box;
@@ -74,10 +78,9 @@ h2 {
 
 .input-group input:focus {
   outline: none;
-  border-color: #000; /* Басқанда қара түспен қоршалады */
+  border-color: #000;
 }
 
-/* Қателік мәтіні */
 .error {
   color: #ff3b3b;
   font-size: 11px;
@@ -86,7 +89,6 @@ h2 {
   font-weight: 500;
 }
 
-/* Негізгі Войти/Регистрация батырмасы */
 .login-submit-btn {
   width: 100%;
   padding: 14px;
@@ -105,14 +107,12 @@ h2 {
   background-color: #333;
 }
 
-/* Астындағы ауыстырып қосу бөлімі */
 .auth-footer {
   margin-top: 25px;
   font-size: 14px;
   color: #666;
 }
 
-/* "Регистрация/Войти" деген көк сілтеме-батырма */
 .toggle-auth-btn {
   background: none;
   border: none;

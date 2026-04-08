@@ -13,7 +13,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Форма орналасқан карта */
 .admin-card {
   background: white;
   border-radius: 12px;
@@ -22,8 +21,8 @@
   margin-bottom: 2rem;
 }
 
-/* Инпуттарды стильдеу */
-.admin-form input, .admin-form select {
+.admin-form input,
+.admin-form select {
   width: 100%;
   padding: 12px;
   border: 1px solid #e2e8f0;
@@ -37,7 +36,6 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Кестенің заманауи түрі */
 .admin-table {
   width: 100%;
   border-collapse: separate;
@@ -61,19 +59,27 @@
   vertical-align: middle;
 }
 
-/* Тауар суреті */
 .admin-table img {
   border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Батырмаларға эффект қосу */
-.edit-btn, .delete-btn {
+.edit-btn,
+.delete-btn {
   padding: 8px;
   border-radius: 6px;
   transition: transform 0.2s, background 0.2s;
 }
 
-.edit-btn:hover { background: #dbeafe; color: var(--primary); transform: scale(1.1); }
-.delete-btn:hover { background: #fee2e2; color: var(--danger); transform: scale(1.1); }
+.edit-btn:hover {
+  background: #dbeafe;
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+  color: var(--danger);
+  transform: scale(1.1);
+}

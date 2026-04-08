@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 
-// --- MIDDLEWARE ---
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
@@ -15,16 +14,13 @@ app.use(cors({
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-// --- DATABASE CONNECTION ---
 const pool = new Pool({
-  // DATABASE_URL болса соны алады (deploy үшін), болмаса жергілікті параметрлерді алады
   connectionString: process.env.DATABASE_URL || 'postgresql://postgres:1234@localhost:5433/bexultandb',
   ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_super_secret_key_2026';
 
-// --- AUTHENTICATION (Тіркелу және Кіру) ---
 
 app.post('/api/register', async (req, res) => {
   const { name, email, phone, password } = req.body;
@@ -85,7 +81,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// --- PRODUCTS (Тауарларды басқару) ---
 
 app.get('/api/products', async (req, res) => {
   try {
@@ -134,7 +129,6 @@ app.delete('/api/products/:id', async (req, res) => {
   }
 });
 
-// --- ORDERS (Тапсырыстар) ---
 
 app.post('/api/orders', async (req, res) => {
   try {
@@ -185,6 +179,5 @@ app.get('/api/my-orders/:identifier', async (req, res) => {
   }
 });
 
-// --- SERVER START ---
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Сервер қосылды: http://localhost:${PORT}`));

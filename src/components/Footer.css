@@ -71,7 +71,10 @@
   margin-bottom: 20px;
 }
 
-.payment-info img { height: 20px; opacity: 0.8; }
+.payment-info img {
+  height: 20px;
+  opacity: 0.8;
+}
 
 .footer-seo-tabs {
   display: flex;
@@ -79,6 +82,7 @@
   color: #666;
   font-size: 14px;
 }
+
 .footer-seo-content {
   margin-top: 30px;
   display: flex;
@@ -94,23 +98,22 @@
 }
 
 .seo-block p {
-  font-size: 13px; /* Кіші әріптер */
-  color: #888;    /* Сұрғылт түс */
+  font-size: 13px;
+  color: #888;
   line-height: 1.6;
   max-width: 1000px;
 }
 
-/* Табтар мен мәтін арасындағы сызық */
 .footer-seo-tabs {
   border-bottom: 1px solid #333;
   padding-bottom: 15px;
   margin-bottom: 20px;
 }
-/* Мәтіндік блоктың сыртқы контейнері */
+
 .footer-seo-container {
-  max-width: 1200px; /* Сайттың негізгі енімен бірдей қыламыз */
-  margin: 0 auto;    /* Оң жақ пен сол жақтан ортаға келтіреді */
-  padding: 0 20px;   /* Экран кішірейгенде шетіне тиіп тұрмауы үшін */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .footer-seo-content {
@@ -118,7 +121,7 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
-  text-align: left; /* Мәтінді сол жақ шетке түзулейді */
+  text-align: left;
 }
 
 .seo-block h4 {
@@ -126,17 +129,16 @@
   color: #fff;
   margin-bottom: 10px;
   font-weight: 600;
-  text-transform: none; /* Тақырыптар тым үлкен болмауы үшін */
+  text-transform: none;
 }
 
 .seo-block p {
   font-size: 13px;
   color: #888;
-  line-height: 1.8; /* Жолдар арасын ашып, оқуға ыңғайлы етеді */
+  line-height: 1.8;
   margin: 0;
 }
 
-/* Табтардың астындағы сызық бүкіл енді емес, тек контейнер енін алсын десең: */
 .footer-bottom-section {
   max-width: 1200px;
   margin: 30px auto 0;

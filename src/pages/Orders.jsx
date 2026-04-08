@@ -6,11 +6,10 @@ const Orders = () => {
   const [status, setStatus] = useState("Жүктелуде...");
 
   useEffect(() => {
-    // Маңызды: Адрес бэкэндтегімен (5000 порт) сәйкес келуі тиіс
     fetch(`${API_URL}/api/orders`)
       .then(res => {
         if (!res.ok) {
-          throw new Error(`Сервер қатесі: ${res.status}`); 
+          throw new Error(`Сервер қатесі: ${res.status}`);
         }
         return res.json();
       })
@@ -31,7 +30,7 @@ const Orders = () => {
     <div style={{ padding: '50px', maxWidth: '1200px', margin: '0 auto', fontFamily: 'Arial' }}>
       <h1 style={{ textAlign: 'center' }}>Менің тапсырыстарым</h1>
       <hr />
-      
+
       {orders.length === 0 ? (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
           <h2 style={{ color: status.includes("Қате") ? 'red' : '#666' }}>{status}</h2>
@@ -39,18 +38,18 @@ const Orders = () => {
       ) : (
         <div style={{ display: 'grid', gap: '20px', marginTop: '30px' }}>
           {orders.map(order => (
-            <div key={order.id} style={{ 
-              border: '1px solid #eee', 
-              padding: '20px', 
+            <div key={order.id} style={{
+              border: '1px solid #eee',
+              padding: '20px',
               borderRadius: '12px',
               backgroundColor: '#fff',
               boxShadow: '0 4px 12px rgba(0,0,0,0.08)'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                 <span style={{ fontWeight: 'bold', fontSize: '18px' }}>Тапсырыс №{order.id}</span>
-                <span style={{ 
-                  background: '#e0f7fa', color: '#006064', 
-                  padding: '4px 10px', borderRadius: '20px', fontSize: '12px' 
+                <span style={{
+                  background: '#e0f7fa', color: '#006064',
+                  padding: '4px 10px', borderRadius: '20px', fontSize: '12px'
                 }}>
                   {order.status || 'paid'}
                 </span>

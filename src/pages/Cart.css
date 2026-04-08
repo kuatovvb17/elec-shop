@@ -39,7 +39,7 @@
   border-radius: 12px;
   display: flex;
   gap: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .item-image img {
@@ -49,7 +49,6 @@
   border-radius: 8px;
 }
 
-/* СУРЕТ ЖОҚ КЕЗДЕГІ СТИЛЬ */
 .no-image-placeholder {
   width: 120px;
   height: 160px;
@@ -93,7 +92,9 @@
   cursor: pointer;
 }
 
-.remove-btn:hover { color: #ff3b30; }
+.remove-btn:hover {
+  color: #ff3b30;
+}
 
 .item-actions-bottom {
   display: flex;
@@ -126,7 +127,7 @@
   background: #fff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 100px;
 }
@@ -137,7 +138,9 @@
   margin-bottom: 15px;
 }
 
-.text-red { color: #ff3b30; }
+.text-red {
+  color: #ff3b30;
+}
 
 .summary-total {
   display: flex;
@@ -195,12 +198,15 @@
 }
 
 @media (max-width: 900px) {
-  .cart-content { grid-template-columns: 1fr; }
+  .cart-content {
+    grid-template-columns: 1fr;
+  }
 }
+
 .item-image {
   width: 120px;
   height: 160px;
-  flex-shrink: 0; /* Сурет қысылып қалмауы үшін */
+  flex-shrink: 0;
   background-color: #f5f5f5;
   border-radius: 8px;
   overflow: hidden;
@@ -208,18 +214,17 @@
   align-items: center;
   justify-content: center;
 }
-/* Бос себет контейнері */
+
 .cart-empty-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Көлденеңінен ортаға қою */
-  justify-content: center; /* Тігінен ортаға қою */
-  min-height: 60vh; /* Экранның 60% биіктігін алу */
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
   text-align: center;
   padding: 20px;
 }
 
-/* "Себетіңіз бос" деген тақырып */
 .cart-empty-container h2 {
   font-size: 24px;
   font-weight: 600;
@@ -227,14 +232,12 @@
   color: #333;
 }
 
-/* Сипаттама мәтіні */
 .cart-empty-container p {
   font-size: 16px;
   color: #666;
   margin-bottom: 30px;
 }
 
-/* "Тауарларға көшу" батырмасы */
 .go-shopping-btn {
   background-color: #000;
   color: #fff;

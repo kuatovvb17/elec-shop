@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-// Компоненттер
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-// Беттер
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
@@ -23,15 +21,14 @@ import './App.css';
 
 const ProtectedRoute = ({ children }) => {
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
-  return isAdmin ? children : <Navigate to="/" />; 
+  return isAdmin ? children : <Navigate to="/" />;
 };
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  
-  // --- ІЗДЕУ (SEARCH) ҮШІН ЖАҢА КҮЙ ---
-  const [searchQuery, setSearchQuery] = useState(""); 
+
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem('favorites');
@@ -45,7 +42,6 @@ function App() {
   const [activeTab, setActiveTab] = useState('women');
   const [activeCategory, setActiveCategory] = useState('all');
 
-  // --- ФУНКЦИЯЛАР ---
   const addToCart = (product) => {
     setCartItems((prevItems) => {
       const exist = prevItems.find((x) => x.id === product.id);
@@ -83,56 +79,54 @@ function App() {
   return (
     <Router>
       <TopBar />
-      <Navbar 
-        cartCount={cartItems.reduce((acc, item) => acc + item.qty, 0)} 
+      <Navbar
+        cartCount={cartItems.reduce((acc, item) => acc + item.qty, 0)}
         favoritesCount={favorites.length}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setActiveCategory={setActiveCategory}
-        // --- ОСЫ ЖЕРДЕ setSearchQuery ФУНКЦИЯСЫН БЕРЕМІЗ ---
-        setSearchQuery={setSearchQuery} 
+        setSearchQuery={setSearchQuery}
       />
 
       <Routes>
         <Route path="/" element={
-          <Home 
-            addToCart={addToCart} 
+          <Home
+            addToCart={addToCart}
             toggleFavorite={toggleFavorite}
-            favorites={favorites} 
-            activeTab={activeTab} 
-            activeCategory={activeCategory} 
+            favorites={favorites}
+            activeTab={activeTab}
+            activeCategory={activeCategory}
             setActiveCategory={setActiveCategory}
-            // --- HOME БЕТІНЕ searchQuery-ді ЖІБЕРЕМІЗ ---
-            searchQuery={searchQuery} 
+            searchQuery={searchQuery}
           />
         } />
 
         <Route path="/cart" element={
-          <Cart 
-            cartItems={cartItems} 
-            removeFromCart={removeFromCart} 
-            updateQty={updateQty} 
+          <Cart
+            cartItems={cartItems}
+            removeFromCart={removeFromCart}
+            updateQty={updateQty}
             setTotalPrice={setTotalPrice}
           />
         } />
 
         <Route path="/favorites" element={
-          <Favorites 
-            favoriteItems={favorites} 
-            toggleFavorite={toggleFavorite} 
+          <Favorites
+            favoriteItems={favorites}
+            toggleFavorite={toggleFavorite}
             addToCart={addToCart}
           />
         } />
 
         <Route path="/checkout" element={<Checkout cartTotal={totalPrice} />} />
 
-        <Route 
-          path="/admin" 
+        <Route
+          path="/admin"
           element={
             <ProtectedRoute>
               <Admin />
             </ProtectedRoute>
-          } 
+          }
         />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/my-orders" element={<Orders />} />

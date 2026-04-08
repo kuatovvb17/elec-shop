@@ -1,18 +1,55 @@
-.orders-page { padding: 20px; max-width: 800px; margin: 0 auto; }
-.order-card { 
-  background: white; border-radius: 12px; padding: 20px; 
-  margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.orders-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.order-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-left: 5px solid #2563eb;
 }
-.order-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px; }
-.status-container { text-align: center; padding: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
 
-/* Көліктің қозғалу анимациясы */
-@keyframes truckMove {
-  0% { transform: translateX(-10px); }
-  50% { transform: translateX(10px); }
-  100% { transform: translateX(-10px); }
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
-.animate-truck { animation: truckMove 2s infinite ease-in-out; color: #2563eb; }
 
-.order-footer { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.9rem; color: #666; }
+.status-container {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+@keyframes truckMove {
+  0% {
+    transform: translateX(-10px);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+.animate-truck {
+  animation: truckMove 2s infinite ease-in-out;
+  color: #2563eb;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}

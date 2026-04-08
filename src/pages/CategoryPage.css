@@ -1,5 +1,5 @@
 .category-page {
-  padding-top: 140px; /* Header-ден төмен түсіру */
+  padding-top: 140px;
   padding-bottom: 80px;
   background-color: #fff;
   min-height: 100vh;
@@ -17,7 +17,6 @@
   margin-bottom: 5px;
 }
 
-/* Фильтр панелі */
 .filter-sticky-bar {
   display: flex;
   justify-content: space-between;
@@ -36,7 +35,10 @@
   gap: 12px;
 }
 
-.filter-label { font-weight: 600; font-size: 16px; }
+.filter-label {
+  font-weight: 600;
+  font-size: 16px;
+}
 
 .price-inputs-row input {
   padding: 10px 15px;
@@ -70,7 +72,6 @@
   cursor: pointer;
 }
 
-/* Тауарлар сеткасы */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -85,7 +86,7 @@
 }
 
 .product-card:hover {
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   transform: translateY(-5px);
 }
 
@@ -95,9 +96,23 @@
   object-fit: cover;
 }
 
-.product-info { padding: 20px; text-align: center; }
-.product-info h3 { font-size: 18px; margin-bottom: 10px; color: #222; }
-.price-tag { font-size: 20px; font-weight: 800; color: #000; margin-bottom: 15px; }
+.product-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.product-info h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.price-tag {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 15px;
+}
 
 .add-to-cart-btn {
   width: 100%;
@@ -121,7 +136,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  
+
   .filter-sticky-bar {
     justify-content: center;
     padding: 15px;

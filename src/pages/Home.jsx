@@ -5,6 +5,7 @@ import OfficeBanner from '../components/WomenPromo2';
 import CategoryIcons from '../components/CategoryIcons'; 
 import ProductDetail from '../components/ProductDetail'; 
 import MenDepartmentBanner from '../components/MenDepartmentBanner'; 
+import { API_URL } from '../config';
 import './Home.css';
 
 // 1. Аргументтерге searchQuery қостық
@@ -14,7 +15,7 @@ const Home = ({ addToCart, toggleFavorite, favorites, activeTab, activeCategory,
 
 useEffect(() => {
   // СІЛТЕМЕГЕ /api/ ҚОСУДЫ ҰМЫТПА:
-  fetch('https://elec-shop-api.onrender.com/api/products') 
+  fetch(`${API_URL}/api/products`) 
     .then((res) => res.json())
     .then((data) => setProducts(data))
     .catch(err => console.error("Қате:", err));

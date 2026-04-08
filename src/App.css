@@ -1,4 +1,3 @@
-/* 1. Стандартты стильдерді тазалау */
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +5,6 @@
 }
 
 
-/* 2. Navbar - менюді қатарға тізу */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -17,21 +15,21 @@
 }
 
 .logo-section img {
-  height: 35px; /* Логотипті аккуратный қылады */
+  height: 35px;
   width: auto;
 }
 
 .nav-links {
   display: flex;
-  gap: 30px; /* Меню арасындағы қашықтық */
-  list-style: none !important; /* Нүктелерді жою */
+  gap: 30px;
+  list-style: none !important;
 }
 
 .nav-links li a {
   text-decoration: none !important;
   color: #333;
   font-size: 0.85rem;
-  font-weight: 300; /* Жұқа шрифт */
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -41,7 +39,6 @@
   font-weight: 500;
 }
 
-/* 3. Себет (Cart) бөлімі */
 .cart-section a {
   text-decoration: none;
   color: #8e8e93;
@@ -58,7 +55,6 @@
 }
 
 
-/* Placeholder стилі */
 .no-image-placeholder {
   width: 120px;
   height: 160px;
@@ -79,7 +75,6 @@
   font-weight: 500;
 }
 
-/* Суреттің өзіне арналған стиль (контейнер ішінде сыюы үшін) */
 .item-image img {
   width: 120px;
   height: 160px;
@@ -87,47 +82,51 @@
   border-radius: 8px;
   display: block;
 }
+
 img {
-  max-width: 100%; 
+  max-width: 100%;
   height: auto;
-  display: block; /* Сурет астындағы артық бос орынды алдын алу үшін */
+  display: block;
 }
+
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px; /* Телефонда шетіне жабысып қалмауы үшін */
-  box-sizing: border-box; /* Padding-ті еніне қосу үшін */
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
-/* Бүкіл экранды реттеу */
-html, body {
-  overflow-x: hidden; /* Көлденең айналдыруды жою */
+html,
+body {
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
 
-/* Топбарды бір сызыққа жинау */
-.topbar, .header {
+.topbar,
+.header {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   padding: 10px 20px !important;
-  flex-wrap: nowrap !important; /* Ешқашан екі жолға бөлінбесін */
+  flex-wrap: nowrap !important;
 }
 
-/* Футерді жинақы қылу */
-footer, .footer-container {
+footer,
+.footer-container {
   display: flex !important;
-  flex-direction: column !important; /* Телефонда бірінің астына бірі */
+  flex-direction: column !important;
   align-items: center !important;
   gap: 15px !important;
   padding: 20px !important;
 }
 
 @media (min-width: 768px) {
-  footer, .footer-container {
-    flex-direction: row !important; /* Компьютерде қатарлап қою */
+
+  footer,
+  .footer-container {
+    flex-direction: row !important;
     justify-content: space-around !important;
   }
 }
